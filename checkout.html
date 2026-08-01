@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Tucabelo</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+    }
+    .checkout-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--border);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 24px;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .checkout-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .checkout-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+    }
+    .btn-cancel {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+    .btn-cancel:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+    .logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+      opacity: 0.6;
+    }
+    .logos img {
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="checkout-container">
+    <div class="loader"></div>
+    <h1 class="checkout-title">Conectando con pasarela de pago...</h1>
+    <p class="checkout-desc">Estamos procesando tu solicitud para que puedas pagar de forma segura con Webpay, Tarjetas o Transferencia.</p>
+    <a href="index.html" class="btn-cancel">Cancelar y Volver</a>
+    
+    <div class="logos">
+      <span style="font-weight: 800; font-family: 'Outfit', sans-serif; color: #1a1a24; font-size: 1.2rem;">webpay<span style="color: #ff4d6d;">.</span></span>
+      <span style="font-weight: 800; font-family: 'Outfit', sans-serif; color: #1a1a24; font-size: 1.2rem;">stripe<span style="color: #52c2c9;">.</span></span>
+    </div>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.querySelector('.checkout-title').textContent = "¡Módulo en integración!";
+      document.querySelector('.checkout-desc').textContent = "Estamos configurando las pasarelas de pago. Por ahora, por favor completa tu pedido a través de WhatsApp.";
+      document.querySelector('.loader').style.display = 'none';
+      const btn = document.querySelector('.btn-cancel');
+      btn.textContent = "Pedir por WhatsApp";
+      btn.style.background = "#25d366";
+      btn.style.color = "#fff";
+      btn.style.border = "none";
+      btn.href = "javascript:void(0)";
+      btn.onclick = () => {
+        let cart = JSON.parse(localStorage.getItem('tucabelo_cart')) || [];
+        if (cart.length === 0) {
+          window.location.href = 'index.html';
+          return;
+        }
+        const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        const msg = cart.map(i => `• ${i.qty}x ${i.name} - $${(i.price * i.qty).toLocaleString('es-CL')} CLP`).join('%0A');
+        const text = `Hola Tucabelo! 👋 Quiero hacer un pedido:%0A%0A${msg}%0A%0A*Total: $${total.toLocaleString('es-CL')} CLP*%0A%0A¿Podrían confirmar disponibilidad?`;
+        window.location.href = `https://wa.me/56900000000?text=${text}`;
+      };
+    }, 2500);
+  </script>
+</body>
+</html>
+
+
+
+

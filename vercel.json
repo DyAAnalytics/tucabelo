@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/catalogo",
+      "dest": "/catalogo.html"
+    },
+    {
+      "src": "/barberia",
+      "dest": "/barberia.html"
+    },
+    {
+      "src": "/clippers",
+      "dest": "/clippers.html"
+    },
+    {
+      "src": "/shavers",
+      "dest": "/shavers.html"
+    },
+    {
+      "src": "/trimmers",
+      "dest": "/trimmers.html"
+    },
+    {
+      "src": "/accesorios",
+      "dest": "/accesorios.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ]
+}
