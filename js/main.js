@@ -217,7 +217,8 @@ async function loadDynamicProducts() {
   grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">Cargando productos... ⏳</div>';
 
   try {
-    const res = await fetch('api/products.php');
+    // Use static JSON (works on Vercel). Locally, XAMPP also serves this file.
+    const res = await fetch('data/products.json');
     globalProducts = await res.json();
     renderDynamicProducts(pageCategory);
   } catch (e) {
