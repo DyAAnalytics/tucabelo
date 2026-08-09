@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout | Tucabelo</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1786263212">
   <style>
     body {
       background: var(--bg-primary);
@@ -108,7 +108,7 @@
         const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
         const msg = cart.map(i => `• ${i.qty}x ${i.name} - $${(i.price * i.qty).toLocaleString('es-CL')} CLP`).join('%0A');
         const text = `Hola Tucabelo! 👋 Quiero hacer un pedido:%0A%0A${msg}%0A%0A*Total: $${total.toLocaleString('es-CL')} CLP*%0A%0A¿Podrían confirmar disponibilidad?`;
-        window.location.href = `https://wa.me/56900000000?text=${text}`;
+        window.location.href = `https://wa.me/56986018173?text=${text}`;
       };
     }, 2500);
   </script>

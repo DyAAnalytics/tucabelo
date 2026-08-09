@@ -4,7 +4,7 @@ $git = "C:\Program Files\Git\cmd\git.exe"
 & $git config user.name "DyAAnalytics"
 
 & $git add .
-& $git commit -m "Subida inicial: Tucabelo Premium"
+& $git commit -m "Update: responsive redesign, testimonials premium, product order fix"
 & $git branch -M main
 
 & $git remote remove origin 2>$null

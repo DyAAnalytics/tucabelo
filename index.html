@@ -29,8 +29,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=1786263212">
+  <link rel="icon" href="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'><text%20y='.9em'%20font-size='90'>%E2%9C%82%EF%B8%8F</text></svg>">
 
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
@@ -40,7 +40,7 @@
     "name": "Tucabelo",
     "description": "Todo para Barbería y Peluquería. Productos profesionales de alta calidad.",
     "url": "https://tucabelo.cl",
-    "telephone": "+56900000000",
+    "telephone": "+56986018173",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Angol",
@@ -77,13 +77,13 @@
 
       <div class="nav-actions">
         <button class="nav-btn" id="search-btn" aria-label="Buscar productos">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
           </svg>
         </button>
         <button class="nav-btn" id="cart-btn" aria-label="Ver carrito de compras" style="position:relative;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path>
           </svg>
           <span class="cart-badge cart-count" style="display:none;">0</span>
         </button>
@@ -110,7 +110,7 @@
 <div class="search-overlay" id="search-overlay" role="dialog" aria-label="Buscar">
   <div class="search-inner">
     <div class="search-field">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#9090b0" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewbox="0 0 24 24" stroke="#9090b0" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
       <input type="text" id="search-input" placeholder="Buscar productos..." aria-label="Campo de búsqueda">
       <button class="search-close" id="search-close" aria-label="Cerrar búsqueda">✕</button>
     </div>
@@ -118,8 +118,12 @@
 </div>
 
 <section class="hero-banner" style="margin-top: 70px; width: 100%;">
-  <a href="catalogo.html" style="display: block; width: 100%; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+  <a href="catalogo.html" style="display: block; width: 100%; position: relative; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
     <img src="images/hero_banner.png" alt="Tucabelo - Todo para barbería y peluquería" style="width: 100%; height: auto; display: block; object-fit: cover;">
+    <span class="hero-hd-btn">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 20a1 1 0 100-2 1 1 0 000 2zm10 0a1 1 0 100-2 1 1 0 000 2zM3 3h2l2.6 11.2a2 2 0 002 1.8h8.8a2 2 0 002-1.8l1.4-7H7.4"/></svg>
+      Comprar ahora
+    </span>
   </a>
 </section>
 
@@ -210,268 +214,10 @@
       <p class="section-desc">Los favoritos de nuestros clientes, seleccionados por calidad y rendimiento.</p>
     </div>
 
-    <div class="products-grid" id="products-grid">
-      <!-- Clippers -->
-      <article class="product-card reveal" data-price="95000" data-name="WMARK NG-X1 Cortadora Profesional">
-        <div class="product-img-wrap">
-          <span class="badge-oferta">Oferta</span>
-          <img src="images/cat_clippers.png" alt="Cortadora profesional WMARK NG-X1" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Clippers</span>
-          <h3 class="product-name">Cortadora de pelo profesional WMARK NG-X1 Motor magnético 10000RPM</h3>
-          <div class="product-prices">
-            <span class="price-current">$95.000 CLP</span>
-            <span class="price-old">$110.000</span>
-            <span class="price-save">-14%</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('wmark-ng-x1','Cortadora WMARK NG-X1',95000,'images/cat_clippers.png','Clippers')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa la Cortadora WMARK NG-X1 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Shavers -->
-      <article class="product-card reveal reveal-delay-1" data-price="25000" data-name="Shaver Kemei 2026">
-        <div class="product-img-wrap">
-          <img src="images/cat_shavers.png" alt="Shaver Kemei 2026 profesional" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Shavers</span>
-          <h3 class="product-name">Shaver Kemei 2026 Afeitadora Profesional</h3>
-          <div class="product-prices">
-            <span class="price-current">$25.000 CLP</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('shaver-kemei-2026','Shaver Kemei 2026',25000,'images/cat_shavers.png','Shavers')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa el Shaver Kemei 2026 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Trimmers -->
-      <article class="product-card reveal reveal-delay-2" data-price="28000" data-name="Trimmer Kemei KM-2023 Inalámbrico">
-        <div class="product-img-wrap">
-          <span class="badge-nuevo">Nuevo</span>
-          <img src="images/cat_trimmers.png" alt="Trimmer Kemei KM-2023 inalámbrico profesional" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Trimmers</span>
-          <h3 class="product-name">Trimmer Kemei KM-2023 Inalámbrico Profesional</h3>
-          <div class="product-prices">
-            <span class="price-current">$28.000 CLP</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('trimmer-kemei-2023','Trimmer Kemei KM-2023',28000,'images/cat_trimmers.png','Trimmers')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa el Trimmer Kemei KM-2023 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Accesorios -->
-      <article class="product-card reveal reveal-delay-3" data-price="5000" data-name="Aceite Lubricante Andis">
-        <div class="product-img-wrap">
-          <span class="badge-oferta">Oferta</span>
-          <img src="images/cat_accesorios.png" alt="Aceite lubricante Andis profesional" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Accesorios</span>
-          <h3 class="product-name">Aceite Lubricante ANDIS Profesional para máquinas</h3>
-          <div class="product-prices">
-            <span class="price-current">$5.000 CLP</span>
-            <span class="price-old">$8.000</span>
-            <span class="price-save">-38%</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('aceite-andis','Aceite Lubricante ANDIS',5000,'images/cat_accesorios.png','Accesorios')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa el Aceite Lubricante ANDIS 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Barberia -->
-      <article class="product-card reveal" data-price="2000" data-name="Cepillo 5in1 Barberia">
-        <div class="product-img-wrap">
-          <span class="badge-oferta">Oferta</span>
-          <img src="images/cat_barberia.png" alt="Cepillo 5in1 para barbería" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Barbería</span>
-          <h3 class="product-name">Cepillo 5in1 Profesional para Barbería</h3>
-          <div class="product-prices">
-            <span class="price-current">$2.000 CLP</span>
-            <span class="price-old">$3.500</span>
-            <span class="price-save">-43%</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('cepillo-5in1','Cepillo 5in1 Barbería',2000,'images/cat_barberia.png','Barbería')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa el Cepillo 5in1 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Clipper 2 -->
-      <article class="product-card reveal reveal-delay-1" data-price="35000" data-name="Cortadora Kemei KM-2296">
-        <div class="product-img-wrap">
-          <span class="badge-oferta">Oferta</span>
-          <img src="images/cat_clippers.png" alt="Cortadora Kemei KM-2296 profesional" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Clippers</span>
-          <h3 class="product-name">Cortadora Kemei KM-2296 con cargador de asiento</h3>
-          <div class="product-prices">
-            <span class="price-current">$35.000 CLP</span>
-            <span class="price-old">$45.000</span>
-            <span class="price-save">-22%</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('kemei-km2296','Cortadora Kemei KM-2296',35000,'images/cat_clippers.png','Clippers')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa la Cortadora Kemei KM-2296 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Shaver 2 -->
-      <article class="product-card reveal reveal-delay-2" data-price="35000" data-name="Shaver Kemei Dorada Impermeable">
-        <div class="product-img-wrap">
-          <span class="badge-nuevo">Premium</span>
-          <img src="images/cat_shavers.png" alt="Shaver Kemei dorada impermeable profesional" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Shavers</span>
-          <h3 class="product-name">Shaver Kemei Dorada Impermeable Profesional</h3>
-          <div class="product-prices">
-            <span class="price-current">$35.000 CLP</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('shaver-kemei-dorada','Shaver Kemei Dorada Impermeable',35000,'images/cat_shavers.png','Shavers')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa el Shaver Kemei Dorada 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Trimmer 2 -->
-      <article class="product-card reveal reveal-delay-3" data-price="22000" data-name="Trimmer VGR V-271 Profesional">
-        <div class="product-img-wrap">
-          <img src="images/cat_trimmers.png" alt="Trimmer VGR V-271 profesional" loading="lazy">
-          <div class="product-quick-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Agregar al carrito
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Trimmers</span>
-          <h3 class="product-name">Trimmer VGR V-271 Profesional Inalámbrico</h3>
-          <div class="product-prices">
-            <span class="price-current">$22.000 CLP</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-add-cart" onclick="addToCart('vgr-v271','Trimmer VGR V-271',22000,'images/cat_trimmers.png','Trimmers')">
-              🛒 Agregar
-            </button>
-            <a href="https://wa.me/56900000000?text=Hola! Me interesa el Trimmer VGR V-271 💈" target="_blank" class="btn-whatsapp" aria-label="Consultar por WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-    </div>
+    <div class="products-grid" id="products-grid"></div>
 
     <div style="text-align:center;margin-top:40px;" class="reveal">
       <a href="catalogo.html" class="btn-secondary" id="view-all-btn">Ver Todo el Catálogo →</a>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST BAR -->
-<section class="trust-bar">
-  <div class="container">
-    <div class="trust-grid">
-      <div class="trust-item reveal">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="trust-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-        <div class="trust-text">
-          <strong>Despacho Mismo Día</strong>
-          <span>Compra antes de las 14:00 hrs</span>
-        </div>
-      </div>
-      <div class="trust-item reveal reveal-delay-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="trust-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-        <div class="trust-text">
-          <strong>Garantía de Calidad</strong>
-          <span>Productos 100% originales</span>
-        </div>
-      </div>
-      <div class="trust-item reveal reveal-delay-2">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="trust-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
-        <div class="trust-text">
-          <strong>Pago Seguro</strong>
-          <span>Webpay · Transferencia · Efectivo</span>
-        </div>
-      </div>
-      <div class="trust-item reveal reveal-delay-3">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="trust-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-        <div class="trust-text">
-          <strong>Atención Personalizada</strong>
-          <span>WhatsApp disponible 24/7</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -488,6 +234,7 @@
     <div class="testimonials-grid">
       <!-- Conde Barbero -->
       <div class="testimonial-card testimonial-featured reveal">
+        <span class="testimonial-badge">Cliente Verificado</span>
         <div class="testimonial-top">
           <div class="testimonial-avatar-wrap">
             <img src="images/conde_barbero.png" alt="Conde Barbero - Cliente Tucabelo" class="testimonial-avatar testimonial-avatar-large" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -496,18 +243,15 @@
           <div class="testimonial-meta">
             <h3 class="testimonial-name">Conde Barbero ✂️</h3>
             <span class="testimonial-role">Barbero Profesional · Angol</span>
-            <div class="testimonial-stars" aria-label="5 de 5 estrellas">
-              ⭐⭐⭐⭐⭐
-            </div>
+            <div class="testimonial-stars" aria-label="5 de 5 estrellas">⭐⭐⭐⭐⭐</div>
           </div>
-          <span class="testimonial-badge">Cliente Verificado</span>
         </div>
         <blockquote class="testimonial-quote">
           "Los productos de Tucabelo son simplemente los mejores del mercado. La cortadora WMARK NG-X1 es una bestia — el corte es ultra preciso, sin jalones. Mis clientes notan la diferencia de inmediato. ¡No compro en otro lado!"
         </blockquote>
         <div class="testimonial-footer">
           <span class="testimonial-product">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             Usa: WMARK NG-X1 + Trimmer VGR V-271
           </span>
         </div>
@@ -530,7 +274,7 @@
         </blockquote>
         <div class="testimonial-footer">
           <span class="testimonial-product">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             Usa: Shaver Kemei Dorado
           </span>
         </div>
@@ -553,21 +297,14 @@
         </blockquote>
         <div class="testimonial-footer">
           <span class="testimonial-product">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             Usa: Pack Completo Pro
           </span>
         </div>
       </div>
     </div>
 
-    <!-- CTA after testimonials -->
-    <div class="testimonials-cta reveal">
-      <p>¿Ya eres cliente de Tucabelo?</p>
-      <a href="https://wa.me/56900000000?text=Hola Tucabelo! Quiero compartir mi experiencia con sus productos 💈" target="_blank" class="btn-cta-wa">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Comparte Tu Experiencia
-      </a>
-    </div>
+
   </div>
 </section>
 
@@ -583,7 +320,7 @@
         <div class="social-links">
           <a href="https://instagram.com/tucabelo" target="_blank" class="social-link" aria-label="Instagram de Tucabelo">📸</a>
           <a href="https://facebook.com/tucabelo" target="_blank" class="social-link" aria-label="Facebook de Tucabelo">👍</a>
-          <a href="https://wa.me/56900000000" target="_blank" class="social-link" aria-label="WhatsApp de Tucabelo">💬</a>
+          <a href="https://wa.me/56986018173" target="_blank" class="social-link" aria-label="WhatsApp de Tucabelo">💬</a>
         </div>
       </div>
       <div class="footer-col">
@@ -607,7 +344,7 @@
       <div class="footer-col">
         <h4>Contacto</h4>
         <ul>
-          <li><a href="https://wa.me/56900000000" target="_blank">WhatsApp</a></li>
+          <li><a href="https://wa.me/56986018173" target="_blank">WhatsApp</a></li>
           <li><a href="mailto:contacto@tucabelo.cl">Email</a></li>
           <li><a href="https://instagram.com/tucabelo" target="_blank">Instagram</a></li>
           <li><a href="#">Política de Privacidad</a></li>
@@ -616,19 +353,13 @@
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">© 2026, Tucabelo. Todos los derechos reservados.</p>
-      <div class="payment-methods" aria-label="Métodos de pago aceptados">
-        <span class="payment-badge">Visa</span>
-        <span class="payment-badge">Mastercard</span>
-        <span class="payment-badge">Amex</span>
-        <span class="payment-badge">Débito</span>
-      </div>
     </div>
   </div>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/56900000000?text=Hola Tucabelo! Quiero consultar sobre sus productos 💈" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a href="https://wa.me/56986018173?text=Hola%20Tucabelo!%20Quiero%20consultar%20sobre%20sus%20productos%20%F0%9F%92%88" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+  <svg viewbox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
 </a>
 
 <!-- CART SIDEBAR -->
@@ -644,7 +375,7 @@
       <span>Total</span>
       <strong id="cart-total-price">$0 CLP</strong>
     </div>
-    <a href="checkout.html" class="btn-checkout" style="text-decoration: none; justify-content: center; display: flex; align-items: center; text-align: center;">💳 Pagar en Línea</a>
+    
     <button class="btn-checkout-wa" onclick="orderViaWhatsApp()" style="margin-top: 10px; width: 100%; border: 1px solid rgba(37,211,102,0.3); background: rgba(37,211,102,0.1); color: #25d366; cursor: pointer; font-weight: bold; border-radius: 8px; padding: 12px;">💬 Pedir por WhatsApp</button>
   </div>
 </aside>
@@ -655,14 +386,3 @@
 <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

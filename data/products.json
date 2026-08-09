@@ -1,0 +1,107 @@
+[
+    {
+        "id": "6a7825c3cd4f6",
+        "name": "WMARK NG-X1 Cortadora Profesional",
+        "price": 95000,
+        "category": "Clippers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/wmarclipper.png?v=1755050462"
+    },
+    {
+        "id": "6a7825c3cd512",
+        "name": "Shaver Kemei Dorada Impermeable",
+        "price": 35000,
+        "category": "Shavers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/SHAVERKEMEIDORADA.png?v=1755804828"
+    },
+    {
+        "id": "6a7825c3cd54d",
+        "name": "Cortadora Kemei KM-2296",
+        "price": 35000,
+        "category": "Clippers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/2296.png?v=1754967408"
+    },
+    {
+        "id": "6a7825c3cd525",
+        "name": "Aceite Lubricante ANDIS",
+        "price": 5000,
+        "category": "Accesorios",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/ACEITELUBRICANTEANDIS.png?v=1755537497"
+    },
+    {
+        "id": "6a7825c3cd509",
+        "name": "VGR V-390 Mini Afeitadora",
+        "price": 15000,
+        "category": "Shavers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/shavervgrbolsillo.png?v=1755050755"
+    },
+    {
+        "id": "6a7825c3cd022",
+        "name": "Pack Clipper Trimmer Accesorios",
+        "price": 100000,
+        "category": "Clippers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/WhatsAppImage2026-06-29at12.28.49PM.jpg?v=1782750702"
+    },
+    {
+        "id": "6a7825c3cd4d9",
+        "name": "Máquina Kemei Perro Gato KM-CW10",
+        "price": 20000,
+        "category": "Clippers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/Capturadepantalla2026-03-06100150.png?v=1772805812"
+    },
+    {
+        "id": "6a7825c3cd4ea",
+        "name": "KEMEI Cortapelos Clipper KM-2035",
+        "price": 40000,
+        "category": "Clippers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/Capturadepantalla2026-03-06100009.png?v=1772805645"
+    },
+    {
+        "id": "6a7825c3cd4ff",
+        "name": "Shaver Kemei 2026",
+        "price": 25000,
+        "category": "Shavers",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/Capturadepantalla2026-06-12091432.png?v=1781270729"
+    },
+    {
+        "id": "6a7825c3cd51b",
+        "name": "Trimmer Kemei KM-2023",
+        "price": 28000,
+        "category": "Trimmers",
+        "image": "images/cat_trimmers.png"
+    },
+    {
+        "id": "6a7825c3cd530",
+        "name": "Acondicionador Cabello Original",
+        "price": 2800,
+        "category": "Accesorios",
+        "image": "images/cat_accesorios.png"
+    },
+    {
+        "id": "6a7825c3cd539",
+        "name": "Cepillo 5in1 Barbería",
+        "price": 2000,
+        "category": "Barbería",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/MAXCARECEPILLOPALETACURVO.png?v=1755702170"
+    },
+    {
+        "id": "6a7825c3cd543",
+        "name": "ROCO Salt Texturizador",
+        "price": 4000,
+        "category": "Barbería",
+        "image": "images/cat_barberia.png"
+    },
+    {
+        "id": "6a7825c3cd557",
+        "name": "ANDIS Lubricante Cool Care 5en1",
+        "price": 16000,
+        "category": "Accesorios",
+        "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/coolcarehairstar_205fe67d-08ca-4db7-8f75-1b696dd5e21e.png?v=1755199145"
+    },
+    {
+        "id": "6a7825c3cd55f",
+        "name": "Trimmer VGR V-271",
+        "price": 22000,
+        "category": "Trimmers",
+        "image": "images/cat_trimmers.png"
+    }
+]
