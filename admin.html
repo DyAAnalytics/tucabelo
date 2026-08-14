@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tucabelo | Admin (Vercel)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+  <style>
+    .gh-info { background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; font-size: 0.82rem; color: #9090b0; line-height: 1.6; }
+    .gh-info strong { color: #00d4aa; }
+    .gh-info a { color: #00d4aa; }
+    .deploy-notice { display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#1a1a2e; border:1px solid rgba(0,212,170,0.4); color:#00d4aa; padding:12px 24px; border-radius:12px; font-size:0.85rem; font-weight:600; z-index:9999; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
+    .deploy-notice.show { display:block; animation: fadeInUp 0.3s ease; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateX(-50%) translateY(10px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+    .sale-col { color: #e53e3e; font-weight: 700; }
+    .no-sale { color: #555; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="glass-panel active">
+    <div class="login-box">
+      <div class="logo-wrap">
+        <img src="images/logo.png" alt="Tucabelo" class="login-logo">
+      </div>
+      <h2>Admin — Vercel</h2>
+      <p>Ingresa tu GitHub Personal Access Token para editar productos.</p>
+
+      <div class="gh-info">
+        📌 <strong>¿Cómo obtener el token?</strong><br>
+        Ve a <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+        → Escribe un nombre, selecciona <strong>repo</strong> (acceso completo) y haz clic en <strong>Generate token</strong>.<br>
+        Copia el token y pégalo abajo. Solo se necesita la primera vez por sesión.
+      </div>
+
+      <form id="login-form">
+        <div class="input-group">
+          <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn-primary">Ingresar</button>
+        <div id="login-error" class="error-msg"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="dashboard-layout">
+    <aside class="sidebar glass-panel">
+      <div class="sidebar-header">
+        <img src="images/logo.png" alt="Tucabelo" class="sidebar-logo">
+        <h3>Admin Panel</h3>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          Productos
+        </a>
+        <a href="catalogo.html" class="nav-item" target="_blank">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Ver Catálogo
+        </a>
+        <button id="logout-btn" class="nav-item logout-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Cerrar Sesión
+        </button>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar glass-panel">
+        <div class="topbar-info">
+          <h1>Catálogo de Productos</h1>
+          <span class="badge" id="total-products">0 Productos</span>
+        </div>
+        <button id="btn-add-new" class="btn-primary">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Nuevo Producto
+        </button>
+      </header>
+
+      <div class="table-container glass-panel">
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Precio Oferta</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody"></tbody>
+        </table>
+        <div id="loading-spinner" class="spinner"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL -->
+  <div id="product-modal" class="modal-overlay">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <h2 id="modal-title">Agregar Producto</h2>
+        <button class="close-modal" id="close-modal">✕</button>
+      </div>
+      <form id="product-form">
+        <input type="hidden" id="prod-id">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="prod-name">Nombre del Producto</label>
+            <input type="text" id="prod-name" required placeholder="Ej: WMARK NG-X1">
+          </div>
+          <div class="form-group">
+            <label for="prod-price">Precio Normal (CLP)</label>
+            <input type="number" id="prod-price" required placeholder="Ej: 25000">
+          </div>
+          <div class="form-group">
+            <label for="prod-sale-price">Precio Oferta (CLP) <small style="color:#666;font-weight:400">(opcional)</small></label>
+            <input type="number" id="prod-sale-price" placeholder="Dejar vacío si no hay oferta">
+          </div>
+          <div class="form-group">
+            <label for="prod-cat">Categoría</label>
+            <select id="prod-cat" required>
+              <option value="Clippers">Clippers</option>
+              <option value="Shavers">Shavers</option>
+              <option value="Trimmers">Trimmers</option>
+              <option value="Accesorios">Accesorios</option>
+              <option value="Barbería">Barbería</option>
+              <option value="Otros">Otros</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label for="prod-image-url">URL de la Imagen</label>
+            <input type="url" id="prod-image-url" placeholder="https://cdn.ejemplo.com/imagen.png">
+            <small style="color:#666;">Sube la imagen a <a href="https://imgur.com/upload" target="_blank" style="color:#00d4aa">imgur.com</a> o usa una URL de Shopify/CDN.</small>
+            <div style="margin-top:10px;">
+              <img id="prod-image-preview" src="" style="display:none; max-width:120px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
+            </div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="cancel-modal">Cancelar</button>
+          <button type="submit" class="btn-primary" id="save-product-btn">Guardar Producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Deploy notice -->
+  <div class="deploy-notice" id="deploy-notice">🚀 Guardado en GitHub — Vercel actualizará en ~30 segundos</div>
+
+  <script>
+    /* ============================================
+       TUCABELO ADMIN — GitHub API Edition
+       Funciona en Vercel sin PHP
+    ============================================ */
+    const OWNER = 'DyAAnalytics';
+    const REPO  = 'tucabelo';
+    const FILE_PATH = 'data/products.json';
+    const BRANCH = 'main';
+
+    let ghToken = '';
+    let currentProducts = [];
+    let fileSha = ''; // SHA del archivo actual en GitHub (requerido para actualizar)
+
+    // DOM
+    const loginScreen  = document.getElementById('login-screen');
+    const dashboard    = document.getElementById('dashboard');
+    const loginForm    = document.getElementById('login-form');
+    const loginError   = document.getElementById('login-error');
+    const logoutBtn    = document.getElementById('logout-btn');
+    const productsTbody = document.getElementById('products-tbody');
+    const totalProductsEl = document.getElementById('total-products');
+    const spinner      = document.getElementById('loading-spinner');
+    const modal        = document.getElementById('product-modal');
+    const productForm  = document.getElementById('product-form');
+    const btnAddNew    = document.getElementById('btn-add-new');
+    const prodId       = document.getElementById('prod-id');
+    const prodName     = document.getElementById('prod-name');
+    const prodPrice    = document.getElementById('prod-price');
+    const prodSalePrice= document.getElementById('prod-sale-price');
+    const prodCat      = document.getElementById('prod-cat');
+    const prodImageUrl = document.getElementById('prod-image-url');
+    const prodImgPreview = document.getElementById('prod-image-preview');
+
+    // ── FORMAT ──────────────────────────────────
+    function formatPrice(n) {
+      return '$' + parseInt(n).toLocaleString('es-CL');
+    }
+
+    function showToast(msg, type = 'success') {
+      const c = document.getElementById('toast-container');
+      const t = document.createElement('div');
+      t.className = `toast ${type}`;
+      t.innerHTML = msg;
+      c.appendChild(t);
+      setTimeout(() => t.remove(), 3500);
+    }
+
+    function showDeployNotice() {
+      const el = document.getElementById('deploy-notice');
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 5000);
+    }
+
+    // ── GITHUB API ───────────────────────────────
+    async function ghFetch(path, options = {}) {
+      const res = await fetch(`https://api.github.com${path}`, {
+        ...options,
+        headers: {
+          'Authorization': `token ${ghToken}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json',
+          ...(options.headers || {})
+        }
+      });
+      return res;
+    }
+
+    async function loadProductsFromGitHub() {
+      spinner.style.display = 'block';
+      productsTbody.innerHTML = '';
+      try {
+        const res = await ghFetch(`/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
+        if (!res.ok) throw new Error('No se pudo leer el archivo');
+        const data = await res.json();
+        fileSha = data.sha;
+        currentProducts = JSON.parse(atob(data.content.replace(/\n/g, '')));
+        renderTable();
+      } catch (e) {
+        showToast('Error cargando productos: ' + e.message, 'error');
+      } finally {
+        spinner.style.display = 'none';
+      }
+    }
+
+    async function saveProductsToGitHub(message) {
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(currentProducts, null, 4))));
+      const res = await ghFetch(`/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          message: message || 'admin: actualización de productos',
+          content: content,
+          sha: fileSha,
+          branch: BRANCH
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || 'Error al guardar');
+      }
+      const result = await res.json();
+      fileSha = result.content.sha; // actualizar SHA para próxima operación
+      showDeployNotice();
+    }
+
+    // ── AUTH ─────────────────────────────────────
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = document.getElementById('gh-token').value.trim();
+      loginError.textContent = 'Verificando...';
+
+      try {
+        const res = await fetch('https://api.github.com/user', {
+          headers: { 'Authorization': `token ${token}` }
+        });
+        if (!res.ok) throw new Error('Token inválido');
+        ghToken = token;
+        sessionStorage.setItem('gh_admin_token', token);
+        showDashboard();
+      } catch (e) {
+        loginError.textContent = '❌ Token inválido. Verifica que tenga permiso "repo".';
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      ghToken = '';
+      sessionStorage.removeItem('gh_admin_token');
+      showLogin();
+    });
+
+    function showDashboard() {
+      loginScreen.classList.remove('active');
+      dashboard.classList.add('active');
+      loadProductsFromGitHub();
+    }
+
+    function showLogin() {
+      dashboard.classList.remove('active');
+      loginScreen.classList.add('active');
+      document.getElementById('gh-token').value = '';
+      loginError.textContent = '';
+    }
+
+    // ── TABLE RENDER ─────────────────────────────
+    function renderTable() {
+      totalProductsEl.textContent = `${currentProducts.length} Productos`;
+      productsTbody.innerHTML = currentProducts.map(p => {
+        const hasSale = p.salePrice && Number(p.salePrice) > 0;
+        const saleTd = hasSale
+          ? `<span class="sale-col">${formatPrice(p.salePrice)} 🔥</span>`
+          : `<span class="no-sale">Sin oferta</span>`;
+        return `<tr>
+          <td class="prod-img-cell"><img src="${p.image || 'images/logo.png'}" alt="${p.name}" onerror="this.src='images/logo.png'"></td>
+          <td><strong>${p.name}</strong></td>
+          <td><span class="cat-badge">${p.category}</span></td>
+          <td>${formatPrice(p.price)}</td>
+          <td>${saleTd}</td>
+          <td>
+            <button class="action-btn edit-btn" onclick="openEdit('${p.id}')">✏️ Editar</button>
+            <button class="action-btn del-btn" onclick="deleteProduct('${p.id}')">🗑️ Borrar</button>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    // ── MODAL ────────────────────────────────────
+    function openModal(title) {
+      document.getElementById('modal-title').textContent = title;
+      modal.classList.add('active');
+    }
+
+    function closeModalHandler() {
+      modal.classList.remove('active');
+      productForm.reset();
+      prodId.value = '';
+      prodImgPreview.style.display = 'none';
+      prodImgPreview.src = '';
+    }
+
+    document.getElementById('close-modal').addEventListener('click', closeModalHandler);
+    document.getElementById('cancel-modal').addEventListener('click', closeModalHandler);
+    btnAddNew.addEventListener('click', () => openModal('Agregar Nuevo Producto'));
+
+    prodImageUrl.addEventListener('input', () => {
+      if (prodImageUrl.value) {
+        prodImgPreview.src = prodImageUrl.value;
+        prodImgPreview.style.display = 'block';
+      } else {
+        prodImgPreview.style.display = 'none';
+      }
+    });
+
+    window.openEdit = function(id) {
+      const p = currentProducts.find(x => x.id === id);
+      if (!p) return;
+      prodId.value = p.id;
+      prodName.value = p.name;
+      prodPrice.value = p.price;
+      prodSalePrice.value = p.salePrice || '';
+      prodCat.value = p.category;
+      prodImageUrl.value = p.image || '';
+      if (p.image) {
+        prodImgPreview.src = p.image;
+        prodImgPreview.style.display = 'block';
+      }
+      openModal('Editar Producto');
+    };
+
+    // ── CRUD ─────────────────────────────────────
+    productForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('save-product-btn');
+      btn.textContent = 'Guardando...';
+      btn.disabled = true;
+
+      const saleVal = prodSalePrice.value ? Number(prodSalePrice.value) : null;
+      const pData = {
+        id: prodId.value || Math.random().toString(36).substr(2, 13),
+        name: prodName.value.trim(),
+        price: Number(prodPrice.value),
+        salePrice: saleVal,
+        category: prodCat.value,
+        image: prodImageUrl.value.trim()
+      };
+
+      try {
+        if (prodId.value) {
+          const idx = currentProducts.findIndex(x => x.id === pData.id);
+          if (idx !== -1) currentProducts[idx] = pData;
+        } else {
+          currentProducts.push(pData);
+        }
+
+        await saveProductsToGitHub(
+          prodId.value ? `admin: edita "${pData.name}"` : `admin: agrega "${pData.name}"`
+        );
+
+        showToast(prodId.value ? '✅ Producto actualizado' : '✅ Producto agregado');
+        closeModalHandler();
+        renderTable();
+      } catch (err) {
+        showToast('❌ Error al guardar: ' + err.message, 'error');
+      } finally {
+        btn.textContent = 'Guardar Producto';
+        btn.disabled = false;
+      }
+    });
+
+    window.deleteProduct = async function(id) {
+      const p = currentProducts.find(x => x.id === id);
+      if (!p || !confirm(`¿Eliminar "${p.name}"?`)) return;
+      try {
+        currentProducts = currentProducts.filter(x => x.id !== id);
+        await saveProductsToGitHub(`admin: elimina "${p.name}"`);
+        showToast('🗑️ Producto eliminado');
+        renderTable();
+      } catch (err) {
+        showToast('❌ Error: ' + err.message, 'error');
+        currentProducts.push(p); // revertir
+      }
+    };
+
+    // ── INIT ─────────────────────────────────────
+    const savedToken = sessionStorage.getItem('gh_admin_token');
+    if (savedToken) {
+      ghToken = savedToken;
+      showDashboard();
+    }
+  </script>
+</body>
+</html>
