@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Tucabelo - Tienda de barbería y peluquería",
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {}
 }
