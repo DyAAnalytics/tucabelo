@@ -26,19 +26,12 @@
       <div class="logo-wrap">
         <img src="images/logo.png" alt="Tucabelo" class="login-logo">
       </div>
-      <h2>Admin — Vercel</h2>
-      <p>Ingresa tu GitHub Personal Access Token para editar productos.</p>
-
-      <div class="gh-info">
-        📌 <strong>¿Cómo obtener el token?</strong><br>
-        Ve a <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
-        → Escribe un nombre, selecciona <strong>repo</strong> (acceso completo) y haz clic en <strong>Generate token</strong>.<br>
-        Copia el token y pégalo abajo. Solo se necesita la primera vez por sesión.
-      </div>
+      <h2>Acceso Privado</h2>
+      <p>Ingresa tu contraseña para editar productos.</p>
 
       <form id="login-form">
         <div class="input-group">
-          <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required autocomplete="off">
+          <input type="password" id="admin-password" placeholder="Contraseña de acceso" required autocomplete="off">
         </div>
         <button type="submit" class="btn-primary">Ingresar</button>
         <div id="login-error" class="error-msg"></div>
@@ -154,21 +147,16 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Deploy notice -->
-  <div class="deploy-notice" id="deploy-notice">🚀 Guardado en GitHub — Vercel actualizará en ~30 segundos</div>
+  <div class="deploy-notice" id="deploy-notice">🚀 Guardado — Vercel actualizará la página en ~30 segundos</div>
 
   <script>
     /* ============================================
-       TUCABELO ADMIN — GitHub API Edition
-       Funciona en Vercel sin PHP
+       TUCABELO ADMIN — Vercel Serverless Edition
     ============================================ */
-    const OWNER = 'DyAAnalytics';
-    const REPO  = 'tucabelo';
-    const FILE_PATH = 'data/products.json';
-    const BRANCH = 'main';
 
-    let ghToken = '';
+    let currentSessionHash = '';
     let currentProducts = [];
-    let fileSha = ''; // SHA del archivo actual en GitHub (requerido para actualizar)
+    let fileSha = ''; // SHA del archivo actual (requerido para actualizar)
 
     // DOM
     const loginScreen  = document.getElementById('login-screen');
@@ -210,92 +198,99 @@
       setTimeout(() => el.classList.remove('show'), 5000);
     }
 
-    // ── GITHUB API ───────────────────────────────
-    async function ghFetch(path, options = {}) {
-      const res = await fetch(`https://api.github.com${path}`, {
-        ...options,
-        headers: {
-          'Authorization': `token ${ghToken}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json',
-          ...(options.headers || {})
-        }
-      });
-      return res;
+    // ── SHA-256 HASH ────────────────────────────
+    async function hashPassword(password) {
+      const msgBuffer = new TextEncoder().encode(password);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    async function loadProductsFromGitHub() {
+    // ── API CALLS ───────────────────────────────
+    async function apiCall(action, data = {}) {
+      const res = await fetch('/api/admin-save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action,
+          passwordHash: currentSessionHash,
+          ...data
+        })
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Error en la solicitud');
+      return result;
+    }
+
+    async function loadProducts() {
       spinner.style.display = 'block';
       productsTbody.innerHTML = '';
       try {
-        const res = await ghFetch(`/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
-        if (!res.ok) throw new Error('No se pudo leer el archivo');
-        const data = await res.json();
-        fileSha = data.sha;
-        currentProducts = JSON.parse(atob(data.content.replace(/\n/g, '')));
+        const result = await apiCall('load');
+        currentProducts = result.products;
+        fileSha = result.sha;
         renderTable();
       } catch (e) {
         showToast('Error cargando productos: ' + e.message, 'error');
+        if (e.message.includes('Contraseña')) logoutBtn.click();
       } finally {
         spinner.style.display = 'none';
       }
     }
 
-    async function saveProductsToGitHub(message) {
-      const content = btoa(unescape(encodeURIComponent(JSON.stringify(currentProducts, null, 4))));
-      const res = await ghFetch(`/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          message: message || 'admin: actualización de productos',
-          content: content,
-          sha: fileSha,
-          branch: BRANCH
-        })
+    async function saveProducts(message) {
+      const result = await apiCall('save', {
+        products: currentProducts,
+        sha: fileSha,
+        message: message
       });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message || 'Error al guardar');
-      }
-      const result = await res.json();
-      fileSha = result.content.sha; // actualizar SHA para próxima operación
+      fileSha = result.newSha;
       showDeployNotice();
     }
 
     // ── AUTH ─────────────────────────────────────
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const token = document.getElementById('gh-token').value.trim();
+      const password = document.getElementById('admin-password').value;
       loginError.textContent = 'Verificando...';
 
       try {
-        const res = await fetch('https://api.github.com/user', {
-          headers: { 'Authorization': `token ${token}` }
+        const hash = await hashPassword(password);
+        
+        // Verificar el hash con la API
+        const res = await fetch('/api/admin-save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'verify', passwordHash: hash })
         });
-        if (!res.ok) throw new Error('Token inválido');
-        ghToken = token;
-        sessionStorage.setItem('gh_admin_token', token);
+        
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Error de acceso');
+        
+        currentSessionHash = hash;
+        sessionStorage.setItem('admin_hash', hash);
         showDashboard();
       } catch (e) {
-        loginError.textContent = '❌ Token inválido. Verifica que tenga permiso "repo".';
+        loginError.textContent = '❌ Contraseña incorrecta.';
       }
     });
 
     logoutBtn.addEventListener('click', () => {
-      ghToken = '';
-      sessionStorage.removeItem('gh_admin_token');
+      currentSessionHash = '';
+      sessionStorage.removeItem('admin_hash');
       showLogin();
     });
 
     function showDashboard() {
       loginScreen.classList.remove('active');
       dashboard.classList.add('active');
-      loadProductsFromGitHub();
+      loadProducts();
     }
 
     function showLogin() {
       dashboard.classList.remove('active');
       loginScreen.classList.add('active');
-      document.getElementById('gh-token').value = '';
+      document.getElementById('admin-password').value = '';
       loginError.textContent = '';
     }
 
@@ -389,7 +384,7 @@
           currentProducts.push(pData);
         }
 
-        await saveProductsToGitHub(
+        await saveProducts(
           prodId.value ? `admin: edita "${pData.name}"` : `admin: agrega "${pData.name}"`
         );
 
@@ -409,19 +404,20 @@
       if (!p || !confirm(`¿Eliminar "${p.name}"?`)) return;
       try {
         currentProducts = currentProducts.filter(x => x.id !== id);
-        await saveProductsToGitHub(`admin: elimina "${p.name}"`);
+        await saveProducts(`admin: elimina "${p.name}"`);
         showToast('🗑️ Producto eliminado');
         renderTable();
       } catch (err) {
         showToast('❌ Error: ' + err.message, 'error');
         currentProducts.push(p); // revertir
+        renderTable();
       }
     };
 
     // ── INIT ─────────────────────────────────────
-    const savedToken = sessionStorage.getItem('gh_admin_token');
-    if (savedToken) {
-      ghToken = savedToken;
+    const savedHash = sessionStorage.getItem('admin_hash');
+    if (savedHash) {
+      currentSessionHash = savedHash;
       showDashboard();
     }
   </script>
