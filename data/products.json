@@ -1,8 +1,9 @@
 [
     {
         "id": "6a7825c3cd4f6",
-        "name": "WMARK NG-X1 Cortadora Profesional",
+        "name": "WMARK NG-X1 Cortadora ProfesionallL",
         "price": 95000,
+        "salePrice": null,
         "category": "Clippers",
         "image": "https://cdn.shopify.com/s/files/1/0772/5324/7201/files/wmarclipper.png?v=1755050462"
     },
