@@ -75,6 +75,15 @@
           </div>
         </div>
         <div class="topbar-right">
+          <select id="filter-category" class="filter-select">
+            <option value="all">Todas las categorías</option>
+            <option value="Clippers">Clippers</option>
+            <option value="Shavers">Shavers</option>
+            <option value="Trimmers">Trimmers</option>
+            <option value="Accesorios">Accesorios</option>
+            <option value="Barbería">Barbería</option>
+            <option value="Otros">Otros</option>
+          </select>
           <div class="stats-badge">
             <span class="badge-icon">📦</span>
             <span id="total-products" class="badge-text">0 Productos</span>
@@ -182,6 +191,7 @@
     const modal        = document.getElementById('product-modal');
     const productForm  = document.getElementById('product-form');
     const btnAddNew    = document.getElementById('btn-add-new');
+    const filterSelect = document.getElementById('filter-category');
     const prodId       = document.getElementById('prod-id');
     const prodName     = document.getElementById('prod-name');
     const prodPrice    = document.getElementById('prod-price');
@@ -306,10 +316,20 @@
       loginError.textContent = '';
     }
 
+    // ── FILTER ───────────────────────────────────
+    filterSelect.addEventListener('change', renderTable);
+
     // ── TABLE RENDER ─────────────────────────────
     function renderTable() {
-      totalProductsEl.textContent = `${currentProducts.length} Productos`;
-      productsTbody.innerHTML = currentProducts.map(p => {
+      const filter = filterSelect.value;
+      let displayProducts = currentProducts;
+      
+      if (filter !== 'all') {
+        displayProducts = currentProducts.filter(p => p.category === filter);
+      }
+
+      totalProductsEl.textContent = `${displayProducts.length} Productos`;
+      productsTbody.innerHTML = displayProducts.map(p => {
         const hasSale = p.salePrice && Number(p.salePrice) > 0;
         const saleTd = hasSale
           ? `<span class="sale-col">${formatPrice(p.salePrice)} 🔥</span>`
