@@ -76,6 +76,7 @@ session_start();
                             <th>Nombre</th>
                             <th>Categoría</th>
                             <th>Precio</th>
+                            <th>Precio Oferta</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -105,8 +106,13 @@ session_start();
                     </div>
                     
                     <div class="form-group">
-                        <label for="prod-price">Precio (CLP)</label>
+                        <label for="prod-price">Precio Normal (CLP)</label>
                         <input type="number" id="prod-price" required placeholder="Ej: 25000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prod-sale-price">Precio Oferta (CLP) <small style="color:var(--text-muted);font-weight:400">(opcional)</small></label>
+                        <input type="number" id="prod-sale-price" placeholder="Ej: 19990 — dejar vacío si no hay oferta">
                     </div>
                     
                     <div class="form-group">

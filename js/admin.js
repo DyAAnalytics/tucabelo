@@ -25,6 +25,7 @@ const btnCancelModal = document.getElementById('cancel-modal');
 const prodId = document.getElementById('prod-id');
 const prodName = document.getElementById('prod-name');
 const prodPrice = document.getElementById('prod-price');
+const prodSalePrice = document.getElementById('prod-sale-price');
 const prodCat = document.getElementById('prod-cat');
 const radioImgTypes = document.getElementsByName('img-type');
 const imgUploadWrap = document.getElementById('img-upload-wrap');
@@ -123,7 +124,12 @@ async function loadProducts() {
 
 function renderTable() {
     totalProducts.textContent = `${currentProducts.length} Productos`;
-    productsTbody.innerHTML = currentProducts.map(p => `
+    productsTbody.innerHTML = currentProducts.map(p => {
+        const hasSale = p.salePrice && Number(p.salePrice) > 0 && Number(p.salePrice) < Number(p.price);
+        const saleBadge = hasSale
+            ? `<span style="background:var(--danger,#e53e3e);color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700">${formatPrice(p.salePrice)} 🔥</span>`
+            : `<span style="color:var(--text-muted,#aaa);font-size:12px">Sin oferta</span>`;
+        return `
         <tr>
             <td class="prod-img-cell">
                 <img src="${p.image || 'images/logo.png'}" alt="${p.name}">
@@ -131,12 +137,13 @@ function renderTable() {
             <td><strong>${p.name}</strong></td>
             <td><span class="cat-badge">${p.category}</span></td>
             <td>${formatPrice(p.price)}</td>
+            <td>${saleBadge}</td>
             <td>
                 <button class="action-btn edit-btn" onclick="openEdit('${p.id}')">✏️ Editar</button>
                 <button class="action-btn del-btn" onclick="deleteProduct('${p.id}')">🗑️ Borrar</button>
             </td>
-        </tr>
-    `).join('');
+        </tr>`;
+    }).join('');
 }
 
 // ================= MODAL & FORM LOGIC =================
@@ -150,6 +157,7 @@ function closeModalHandler() {
     modal.classList.remove('active');
     productForm.reset();
     prodId.value = '';
+    if (prodSalePrice) prodSalePrice.value = '';
     imgPreview.style.display = 'none';
     imgPreview.src = '';
     imgFinal.value = '';
@@ -202,6 +210,7 @@ window.openEdit = function(id) {
     prodId.value = p.id;
     prodName.value = p.name;
     prodPrice.value = p.price;
+    if (prodSalePrice) prodSalePrice.value = p.salePrice || '';
     prodCat.value = p.category;
     
     // Decide if image is URL or Upload
@@ -284,6 +293,7 @@ productForm.addEventListener('submit', async (e) => {
         id: prodId.value,
         name: prodName.value,
         price: prodPrice.value,
+        salePrice: prodSalePrice ? (prodSalePrice.value || null) : null,
         category: prodCat.value,
         image: finalImageUrl
     };
