@@ -2,7 +2,16 @@
   "version": 2,
   "buildCommand": null,
   "outputDirectory": ".",
+  "functions": {
+    "api/admin-save.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "routes": [
+    {
+      "src": "/api/admin-save",
+      "dest": "/api/admin-save.js"
+    },
     {
       "src": "/",
       "dest": "/index.html"
