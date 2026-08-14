@@ -104,5 +104,13 @@
         "price": 22000,
         "category": "Trimmers",
         "image": "images/cat_trimmers.png"
+    },
+    {
+        "id": "hjo0qyzearn",
+        "name": "prueba",
+        "price": 23333,
+        "salePrice": null,
+        "category": "Clippers",
+        "image": ""
     }
 ]
