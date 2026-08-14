@@ -376,8 +376,16 @@
     btnAddNew.addEventListener('click', () => openModal('Agregar Nuevo Producto'));
 
     prodImageUrl.addEventListener('input', () => {
-      if (prodImageUrl.value) {
-        prodImgPreview.src = prodImageUrl.value;
+      let val = prodImageUrl.value.trim();
+      
+      // Auto-corregir enlaces de Imgur (convertir página web a link directo de imagen)
+      if (val.match(/^https?:\/\/imgur\.com\/([a-zA-Z0-9]+)$/)) {
+        val = `https://i.imgur.com/${RegExp.$1}.png`;
+        prodImageUrl.value = val;
+      }
+
+      if (val) {
+        prodImgPreview.src = val;
         prodImgPreview.style.display = 'block';
       } else {
         prodImgPreview.style.display = 'none';
