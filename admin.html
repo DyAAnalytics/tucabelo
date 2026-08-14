@@ -239,8 +239,17 @@
           ...data
         })
       });
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.error || 'Error en la solicitud');
+
+      // Intenta parsear como JSON, si falla muestra el texto plano
+      let result;
+      const text = await res.text();
+      try {
+        result = JSON.parse(text);
+      } catch {
+        throw new Error(`HTTP ${res.status}: ${text.substring(0, 200)}`);
+      }
+
+      if (!res.ok) throw new Error(result.error || result.message || `HTTP ${res.status}`);
       return result;
     }
 
