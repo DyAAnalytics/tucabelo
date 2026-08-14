@@ -106,7 +106,12 @@ module.exports = async (req, res) => {
       const result = await putRes.json();
       return res.status(200).json({ ok: true, newSha: result.content.sha });
     } catch (e) {
-      return res.status(500).json({ error: e.message });
+      let debugInfo = e.message;
+      if (e.message === 'Not Found') {
+        const tk = token ? `${token.substring(0, 4)}...${token.substring(token.length - 4)}` : 'Vacío';
+        debugInfo = `Not Found (404). ¿El repo es privado y el token no tiene scope 'repo'? Token usado empieza en: ${tk}`;
+      }
+      return res.status(500).json({ error: debugInfo });
     }
   }
 
