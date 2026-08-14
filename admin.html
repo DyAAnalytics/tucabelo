@@ -149,10 +149,11 @@
           </div>
           <div class="form-group" style="grid-column:1/-1">
             <label for="prod-image-url">URL de la Imagen</label>
-            <input type="url" id="prod-image-url" placeholder="https://cdn.ejemplo.com/imagen.png">
-            <small style="color:#666;">Sube la imagen a <a href="https://imgur.com/upload" target="_blank" style="color:#00d4aa">imgur.com</a> o usa una URL de Shopify/CDN.</small>
+            <input type="url" id="prod-image-url" placeholder="https://i.imgur.com/imagen.png">
+            <small style="color:#666;">En Imgur: Sube la foto, pasa el mouse/dedo encima, mantén presionado y elige <strong>"Copiar dirección de la imagen"</strong>. El link <strong>debe terminar en .png o .jpg</strong>.</small>
             <div style="margin-top:10px;">
               <img id="prod-image-preview" src="" style="display:none; max-width:120px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
+              <div id="prod-image-error" style="display:none; color:var(--danger); font-size:0.85rem; margin-top:5px;">⚠️ El enlace no es una imagen válida o falta terminar en .jpg/.png</div>
             </div>
           </div>
         </div>
@@ -375,8 +376,21 @@
     document.getElementById('cancel-modal').addEventListener('click', closeModalHandler);
     btnAddNew.addEventListener('click', () => openModal('Agregar Nuevo Producto'));
 
+    const prodImgError = document.getElementById('prod-image-error');
+
+    // Manejar errores de carga de la imagen
+    prodImgPreview.addEventListener('error', () => {
+      prodImgPreview.style.display = 'none';
+      prodImgError.style.display = 'block';
+    });
+
+    prodImgPreview.addEventListener('load', () => {
+      prodImgError.style.display = 'none';
+    });
+
     prodImageUrl.addEventListener('input', () => {
       let val = prodImageUrl.value.trim();
+      prodImgError.style.display = 'none';
       
       // Auto-corregir enlaces de Imgur (convertir página web a link directo de imagen)
       if (val.match(/^https?:\/\/imgur\.com\/([a-zA-Z0-9]+)$/)) {
