@@ -232,7 +232,9 @@ function renderDynamicProducts(filterCategory = null) {
 
   let productsToShow = globalProducts;
   if (filterCategory) {
-    productsToShow = globalProducts.filter(p => p.category === filterCategory);
+    const normalize = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const normalizedFilter = normalize(filterCategory);
+    productsToShow = globalProducts.filter(p => normalize(p.category) === normalizedFilter);
   }
 
   if (productsToShow.length === 0) {
@@ -319,8 +321,52 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('cart-close-btn')?.addEventListener('click', closeCart);
 
   // Search
-  document.getElementById('search-btn')?.addEventListener('click', openSearch);
-  document.getElementById('search-close')?.addEventListener('click', closeSearch);
+  const searchBtn = document.getElementById('search-btn');
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchClose = document.getElementById('search-close');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+
+  if (searchBtn && searchOverlay) {
+    searchBtn.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
+    
+    // Live search logic
+    if (searchInput && searchResults) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (query.length < 2) {
+          searchResults.innerHTML = '';
+          return;
+        }
+        
+        const normalize = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const normalizedQuery = normalize(query);
+        
+        const results = globalProducts.filter(p => 
+          normalize(p.name).includes(normalizedQuery) || 
+          normalize(p.category).includes(normalizedQuery)
+        ).slice(0, 5); // show max 5 results in dropdown
+        
+        if (results.length === 0) {
+          searchResults.innerHTML = '<div style="padding: 16px; color: var(--text-muted); text-align: center;">No se encontraron productos</div>';
+          return;
+        }
+        
+        searchResults.innerHTML = results.map(p => `
+          <div class="search-result-item" onclick="addToCart('${p.id}','${p.name.replace(/'/g, "\\'")}',${p.salePrice || p.price},'${p.image}','${p.category}'); closeSearch();">
+            <img src="${p.image || 'images/logo.png'}" alt="${p.name}">
+            <div class="search-result-info">
+              <div class="search-result-name">${p.name}</div>
+              <div class="search-result-price">${formatPrice(p.salePrice || p.price)}</div>
+            </div>
+            <button class="search-result-add" aria-label="Agregar">🛒</button>
+          </div>
+        `).join('');
+      });
+    }
+  }
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeSearch(); closeCart(); }
   });
