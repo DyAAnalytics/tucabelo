@@ -1220,17 +1220,21 @@ input, select { font-family: inherit; }
 .product-img-wrap {
   position: relative;
   aspect-ratio: 1;
+  /* isolation:isolate crea contexto limpio para que mix-blend-mode funcione contra el background */
+  isolation: isolate;
   overflow: hidden;
-  /* Neutral light background — mix-blend-mode: multiply needs a light surface */
-  background: #f5f6f7;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  /* Fondo claro neutro necesario para que multiply elimine el blanco */
+  background: #f4f5f6;
 }
 
 .product-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 12px;
-  /* Elimina fondo blanco de imágenes Imgur visualmente — el blanco se vuelve transparente */
+  padding: 16px;
+  display: block;
+  /* multiply: blanco (255) x fondo (#f4f5f6) = fondo — el blanco desaparece */
   mix-blend-mode: multiply;
   transition: transform 0.4s ease;
 }
