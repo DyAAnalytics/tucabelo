@@ -1221,7 +1221,8 @@ input, select { font-family: inherit; }
   position: relative;
   aspect-ratio: 1;
   overflow: hidden;
-  background: var(--surface);
+  /* Neutral light background — mix-blend-mode: multiply needs a light surface */
+  background: #f5f6f7;
 }
 
 .product-img-wrap img {
@@ -1229,7 +1230,8 @@ input, select { font-family: inherit; }
   height: 100%;
   object-fit: contain;
   padding: 12px;
-  background-color: #fff;
+  /* Elimina fondo blanco de imágenes Imgur visualmente — el blanco se vuelve transparente */
+  mix-blend-mode: multiply;
   transition: transform 0.4s ease;
 }
 
