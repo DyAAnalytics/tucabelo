@@ -32,6 +32,72 @@
   <link rel="stylesheet" href="css/style.css?v=1786263212">
   <link rel="icon" href="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'><text%20y='.9em'%20font-size='90'>%E2%9C%82%EF%B8%8F</text></svg>">
 
+  <!-- Critical inline CSS: prevents flash of unstyled hero -->
+  <style>
+    /* Preloader */
+    #page-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: linear-gradient(135deg, #0e1215 0%, #141b1f 45%, #0a1118 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #page-preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .preloader-logo {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #e8eaed;
+    }
+    .preloader-logo span {
+      color: #0d7377;
+    }
+    .preloader-spinner {
+      width: 44px;
+      height: 44px;
+      border: 3px solid rgba(13,115,119,0.2);
+      border-top-color: #0d7377;
+      border-radius: 50%;
+      animation: preloader-spin 0.8s linear infinite;
+    }
+    .preloader-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .preloader-dots span {
+      width: 7px;
+      height: 7px;
+      background: #0d7377;
+      border-radius: 50%;
+      animation: preloader-bounce 1.2s ease-in-out infinite;
+    }
+    .preloader-dots span:nth-child(2) { animation-delay: 0.15s; }
+    .preloader-dots span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes preloader-spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes preloader-bounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40%           { transform: scale(1);   opacity: 1; }
+    }
+    /* Critical hero background so it's dark even before CSS file loads */
+    body { background: #0e1215; }
+    .hero-v2 {
+      background: linear-gradient(135deg, #0e1215 0%, #141b1f 45%, #0a1118 100%);
+      min-height: 100vh;
+    }
+  </style>
+
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
   {
@@ -56,6 +122,37 @@
 </head>
 
 <body>
+
+<!-- PRELOADER -->
+<div id="page-preloader" role="status" aria-label="Cargando Tucabelo">
+  <div class="preloader-logo">Tu<span>cabelo</span></div>
+  <div class="preloader-spinner"></div>
+  <div class="preloader-dots">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<script>
+  // Hide preloader once page is fully loaded (fonts + CSS + images)
+  (function() {
+    function hidePreloader() {
+      var el = document.getElementById('page-preloader');
+      if (el) {
+        el.classList.add('hide');
+        setTimeout(function() { el.remove(); }, 600);
+      }
+    }
+    if (document.readyState === 'complete') {
+      setTimeout(hidePreloader, 200);
+    } else {
+      window.addEventListener('load', function() {
+        setTimeout(hidePreloader, 200);
+      });
+      // Safety fallback: hide after 3s no matter what
+      setTimeout(hidePreloader, 3000);
+    }
+  })();
+</script>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
