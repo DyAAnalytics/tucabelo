@@ -3,79 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>Tucabelo | Admin</title>
+  <meta name="description" content="Panel de administración de productos Tucabelo">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/admin.css">
-  <style>
-    .gh-info { background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; font-size: 0.82rem; color: #9090b0; line-height: 1.6; }
-    .gh-info strong { color: #00d4aa; }
-    .gh-info a { color: #00d4aa; }
-    .deploy-notice { display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#1a1a2e; border:1px solid rgba(0,212,170,0.4); color:#00d4aa; padding:12px 24px; border-radius:12px; font-size:0.85rem; font-weight:600; z-index:9999; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
-    .deploy-notice.show { display:block; animation: fadeInUp 0.3s ease; }
-    @keyframes fadeInUp { from { opacity:0; transform:translateX(-50%) translateY(10px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
-    .sale-col { color: #e53e3e; font-weight: 700; }
-    .no-sale { color: #555; font-size: 0.8rem; }
-  </style>
 </head>
 <body>
 
-  <!-- LOGIN SCREEN -->
-  <div id="login-screen" class="glass-panel active">
+  <!-- ════════════════════════════════════════
+       LOGIN SCREEN
+       ════════════════════════════════════════ -->
+  <div id="login-screen" class="active" role="dialog" aria-label="Inicio de sesión">
     <div class="login-box">
       <div class="logo-wrap">
-        <img src="images/logo.png" alt="Tucabelo" class="login-logo">
+        <img src="images/logo.png" alt="Tucabelo" class="login-logo" width="120" height="auto">
       </div>
       <h2>Acceso Privado</h2>
-      <p>Ingresa tu contraseña para editar productos.</p>
+      <p>Ingresa tu contraseña para administrar productos.</p>
 
-      <form id="login-form">
+      <form id="login-form" novalidate>
         <div class="input-group">
-          <input type="password" id="admin-password" placeholder="Contraseña de acceso" required autocomplete="off">
+          <input type="password" id="admin-password" placeholder="Contraseña de acceso" required autocomplete="off" aria-label="Contraseña">
         </div>
-        <button type="submit" class="btn-primary">Ingresar</button>
-        <div id="login-error" class="error-msg"></div>
+        <button type="submit" class="btn-primary" id="login-btn">Ingresar</button>
+        <div id="login-error" class="error-msg" role="alert" aria-live="polite"></div>
       </form>
     </div>
   </div>
 
-  <!-- DASHBOARD -->
+  <!-- ════════════════════════════════════════
+       DASHBOARD
+       ════════════════════════════════════════ -->
   <div id="dashboard" class="dashboard-layout">
-    <aside class="sidebar glass-panel">
+    <!-- Sidebar -->
+    <aside class="sidebar">
       <div class="sidebar-header">
-        <img src="images/logo.png" alt="Tucabelo" class="sidebar-logo">
+        <img src="images/logo.png" alt="Tucabelo" class="sidebar-logo" width="110">
       </div>
-      <nav class="sidebar-nav">
+      <nav class="sidebar-nav" aria-label="Menú principal">
         <div class="nav-section">MENU PRINCIPAL</div>
-        <a href="#" class="nav-item active">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <a href="#" class="nav-item active" aria-current="page">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
           Inventario
         </a>
-        <a href="catalogo.html" class="nav-item" target="_blank">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <a href="catalogo.html" class="nav-item" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           Ver Tienda
         </a>
-        
+
         <div class="nav-spacer"></div>
-        
-        <button id="logout-btn" class="nav-item logout-btn">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+
+        <button id="logout-btn" class="nav-item logout-btn" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
           Cerrar Sesión
         </button>
       </nav>
     </aside>
 
+    <!-- Main Content -->
     <main class="main-content">
-      <header class="topbar glass-panel">
+      <header class="topbar">
         <div class="topbar-left">
-          <img src="images/logo.png" alt="Tucabelo" class="topbar-mobile-logo">
+          <img src="images/logo.png" alt="Tucabelo" class="topbar-mobile-logo" width="80">
           <div class="topbar-info">
             <h1>Gestión de Productos</h1>
             <p>Administra tu catálogo, precios y ofertas en tiempo real.</p>
           </div>
         </div>
         <div class="topbar-right">
-          <select id="filter-category" class="filter-select">
+          <select id="filter-category" class="filter-select" aria-label="Filtrar por categoría">
             <option value="all">Todas las categorías</option>
             <option value="Clippers">Clippers</option>
             <option value="Shavers">Shavers</option>
@@ -85,58 +84,65 @@
             <option value="Otros">Otros</option>
           </select>
           <div class="stats-badge">
-            <span class="badge-icon">📦</span>
+            <span class="badge-icon" aria-hidden="true">📦</span>
             <span id="total-products" class="badge-text">0 Productos</span>
           </div>
-          <button id="btn-add-new" class="btn-primary">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <button id="btn-add-new" class="btn-primary" type="button">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             Nuevo Producto
           </button>
         </div>
       </header>
 
-      <div class="table-container glass-panel">
-        <table class="products-table">
+      <div class="table-container">
+        <table class="products-table" role="table">
           <thead>
             <tr>
-              <th>Imagen</th>
-              <th>Nombre</th>
-              <th>Categoría</th>
-              <th>Precio</th>
-              <th>Precio Oferta</th>
-              <th>Acciones</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Precio Oferta</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody id="products-tbody"></tbody>
         </table>
-        <div id="loading-spinner" class="spinner"></div>
+        <div id="loading-spinner" class="spinner" role="status" aria-label="Cargando productos" style="display:none;"></div>
+        <div id="empty-state" class="empty-state" style="display:none;">
+          <div class="empty-state-icon">📋</div>
+          <div class="empty-state-title">No hay productos</div>
+          <div class="empty-state-desc">Agrega tu primer producto haciendo clic en "Nuevo Producto".</div>
+        </div>
       </div>
     </main>
   </div>
 
-  <!-- MODAL -->
-  <div id="product-modal" class="modal-overlay">
-    <div class="modal-content glass-panel">
+  <!-- ════════════════════════════════════════
+       MODAL — Add / Edit Product
+       ════════════════════════════════════════ -->
+  <div id="product-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
       <div class="modal-header">
         <h2 id="modal-title">Agregar Producto</h2>
-        <button class="close-modal" id="close-modal">✕</button>
+        <button class="close-modal" id="close-modal" type="button" aria-label="Cerrar modal">✕</button>
       </div>
-      <form id="product-form">
+      <form id="product-form" novalidate>
         <input type="hidden" id="prod-id">
         <div class="form-grid">
-          <div class="form-group">
+          <div class="form-group" style="grid-column: 1 / -1;">
             <label for="prod-name">Nombre del Producto</label>
-            <input type="text" id="prod-name" required placeholder="Ej: WMARK NG-X1">
+            <input type="text" id="prod-name" required placeholder="Ej: WMARK NG-X1" maxlength="120">
           </div>
           <div class="form-group">
             <label for="prod-price">Precio Normal (CLP)</label>
-            <input type="number" id="prod-price" required placeholder="Ej: 25000">
+            <input type="number" id="prod-price" required placeholder="Ej: 25000" min="1" step="1">
           </div>
           <div class="form-group">
-            <label for="prod-sale-price">Precio Oferta (CLP) <small style="color:#666;font-weight:400">(opcional)</small></label>
-            <input type="number" id="prod-sale-price" placeholder="Dejar vacío si no hay oferta">
+            <label for="prod-sale-price">Precio Oferta (CLP) <small style="color:var(--text-tertiary);font-weight:400">(opcional)</small></label>
+            <input type="number" id="prod-sale-price" placeholder="Dejar vacío si no hay oferta" min="1" step="1">
           </div>
-          <div class="form-group">
+          <div class="form-group" style="grid-column: 1 / -1;">
             <label for="prod-cat">Categoría</label>
             <select id="prod-cat" required>
               <option value="Clippers">Clippers</option>
@@ -147,13 +153,13 @@
               <option value="Otros">Otros</option>
             </select>
           </div>
-          <div class="form-group" style="grid-column:1/-1">
+          <div class="form-group" style="grid-column: 1 / -1;">
             <label for="prod-image-url">URL de la Imagen</label>
             <input type="url" id="prod-image-url" placeholder="https://i.imgur.com/imagen.png">
-            <small style="color:#666;">En Imgur: Sube la foto, pasa el mouse/dedo encima, mantén presionado y elige <strong>"Copiar dirección de la imagen"</strong>. El link <strong>debe terminar en .png o .jpg</strong>.</small>
-            <div style="margin-top:10px;">
-              <img id="prod-image-preview" src="" style="display:none; max-width:120px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
-              <div id="prod-image-error" style="display:none; color:var(--danger); font-size:0.85rem; margin-top:5px;">⚠️ El enlace no es una imagen válida o falta terminar en .jpg/.png</div>
+            <small>En Imgur: sube la foto → clic derecho en la imagen → <strong>"Copiar dirección de la imagen"</strong>. El link debe terminar en .png o .jpg.</small>
+            <div style="margin-top:8px;">
+              <img id="prod-image-preview" src="" alt="Vista previa" style="display:none; max-width:80px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+              <div id="prod-image-error" style="display:none;">⚠️ El enlace no es una imagen válida</div>
             </div>
           </div>
         </div>
@@ -165,63 +171,102 @@
     </div>
   </div>
 
-  <!-- Toast -->
-  <div id="toast-container" class="toast-container"></div>
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-  <!-- Deploy notice -->
-  <div class="deploy-notice" id="deploy-notice">🚀 Guardado — El sistema actualizará el catálogo en ~30 segundos</div>
+  <!-- Deploy Notice -->
+  <div class="deploy-notice" id="deploy-notice" role="status">🚀 Guardado — El catálogo se actualizará en ~30 segundos</div>
 
+  <!-- ════════════════════════════════════════
+       JAVASCRIPT — Tucabelo Admin
+       ════════════════════════════════════════ -->
   <script>
     /* ============================================
        TUCABELO ADMIN — Vercel Serverless Edition
+       Bug-fixed & hardened version
     ============================================ */
 
+    // ── State ──────────────────────────────────
     let currentSessionHash = '';
     let currentProducts = [];
-    let fileSha = ''; // SHA del archivo actual (requerido para actualizar)
+    let fileSha = '';
 
-    // DOM
-    const loginScreen  = document.getElementById('login-screen');
-    const dashboard    = document.getElementById('dashboard');
-    const loginForm    = document.getElementById('login-form');
-    const loginError   = document.getElementById('login-error');
-    const logoutBtn    = document.getElementById('logout-btn');
-    const productsTbody = document.getElementById('products-tbody');
-    const totalProductsEl = document.getElementById('total-products');
-    const spinner      = document.getElementById('loading-spinner');
-    const modal        = document.getElementById('product-modal');
-    const productForm  = document.getElementById('product-form');
-    const btnAddNew    = document.getElementById('btn-add-new');
-    const filterSelect = document.getElementById('filter-category');
-    const prodId       = document.getElementById('prod-id');
-    const prodName     = document.getElementById('prod-name');
-    const prodPrice    = document.getElementById('prod-price');
-    const prodSalePrice= document.getElementById('prod-sale-price');
-    const prodCat      = document.getElementById('prod-cat');
-    const prodImageUrl = document.getElementById('prod-image-url');
-    const prodImgPreview = document.getElementById('prod-image-preview');
+    // ── DOM Cache ──────────────────────────────
+    const $ = (id) => document.getElementById(id);
+    const loginScreen   = $('login-screen');
+    const dashboard     = $('dashboard');
+    const loginForm     = $('login-form');
+    const loginError    = $('login-error');
+    const loginBtn      = $('login-btn');
+    const logoutBtn     = $('logout-btn');
+    const productsTbody = $('products-tbody');
+    const totalProductsEl = $('total-products');
+    const spinner       = $('loading-spinner');
+    const emptyState    = $('empty-state');
+    const modal         = $('product-modal');
+    const productForm   = $('product-form');
+    const btnAddNew     = $('btn-add-new');
+    const filterSelect  = $('filter-category');
+    const prodId        = $('prod-id');
+    const prodName      = $('prod-name');
+    const prodPrice     = $('prod-price');
+    const prodSalePrice = $('prod-sale-price');
+    const prodCat       = $('prod-cat');
+    const prodImageUrl  = $('prod-image-url');
+    const prodImgPreview = $('prod-image-preview');
+    const prodImgError  = $('prod-image-error');
 
-    // ── FORMAT ──────────────────────────────────
-    function formatPrice(n) {
-      return '$' + parseInt(n).toLocaleString('es-CL');
+    // ── Utilities ──────────────────────────────
+
+    /**
+     * Escapes HTML special characters to prevent XSS.
+     * @param {string} str - Raw string
+     * @returns {string} Safe HTML string
+     */
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = String(str);
+      return div.innerHTML;
     }
 
+    /**
+     * Formats a number as Chilean Peso currency.
+     * @param {number|string} n - Price value
+     * @returns {string} Formatted price like "$25.000"
+     */
+    function formatPrice(n) {
+      const num = parseInt(n, 10);
+      if (isNaN(num) || num <= 0) return '$0';
+      return '$' + num.toLocaleString('es-CL');
+    }
+
+    /**
+     * Shows a toast notification.
+     * @param {string} msg - Text message (NOT HTML)
+     * @param {'success'|'error'} type - Toast type
+     */
     function showToast(msg, type = 'success') {
-      const c = document.getElementById('toast-container');
-      const t = document.createElement('div');
-      t.className = `toast ${type}`;
-      t.innerHTML = msg;
-      c.appendChild(t);
-      setTimeout(() => t.remove(), 3500);
+      const container = $('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = msg; // FIX: Use textContent to prevent XSS
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(20px)';
+        toast.style.transition = 'all 300ms ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
     }
 
     function showDeployNotice() {
-      const el = document.getElementById('deploy-notice');
+      const el = $('deploy-notice');
       el.classList.add('show');
       setTimeout(() => el.classList.remove('show'), 5000);
     }
 
-    // ── SHA-256 HASH ────────────────────────────
+    // ── SHA-256 Hash ───────────────────────────
     async function hashPassword(password) {
       const msgBuffer = new TextEncoder().encode(password);
       const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -229,7 +274,15 @@
       return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    // ── API CALLS ───────────────────────────────
+    // ── API Layer ──────────────────────────────
+
+    /**
+     * Makes an API call to the admin-save serverless function.
+     * Includes proper error handling for non-JSON responses.
+     * @param {string} action - API action (verify|load|save)
+     * @param {Object} data - Additional request data
+     * @returns {Promise<Object>} Parsed JSON response
+     */
     async function apiCall(action, data = {}) {
       const res = await fetch('/api/admin-save', {
         method: 'POST',
@@ -241,74 +294,94 @@
         })
       });
 
-      // Intenta parsear como JSON, si falla muestra el texto plano
       let result;
       const text = await res.text();
       try {
         result = JSON.parse(text);
       } catch {
-        throw new Error(`HTTP ${res.status}: ${text.substring(0, 200)}`);
+        throw new Error(`Respuesta inesperada del servidor (HTTP ${res.status})`);
       }
 
-      if (!res.ok) throw new Error(result.error || result.message || `HTTP ${res.status}`);
+      if (!res.ok) {
+        throw new Error(result.error || result.message || `Error del servidor (HTTP ${res.status})`);
+      }
       return result;
     }
 
+    // ── Load Products ──────────────────────────
     async function loadProducts() {
       spinner.style.display = 'block';
+      emptyState.style.display = 'none';
       productsTbody.innerHTML = '';
+
       try {
         const result = await apiCall('load');
-        currentProducts = result.products;
-        fileSha = result.sha;
+        currentProducts = Array.isArray(result.products) ? result.products : [];
+        fileSha = result.sha || '';
         renderTable();
       } catch (e) {
         showToast('Error cargando productos: ' + e.message, 'error');
-        if (e.message.includes('Contraseña')) logoutBtn.click();
+        // If auth error, force logout
+        if (e.message.includes('Contraseña') || e.message.includes('401')) {
+          logoutBtn.click();
+        }
       } finally {
         spinner.style.display = 'none';
       }
     }
 
+    // ── Save Products ──────────────────────────
     async function saveProducts(message) {
       const result = await apiCall('save', {
         products: currentProducts,
         sha: fileSha,
         message: message
       });
-      fileSha = result.newSha;
+      fileSha = result.newSha || '';
       showDeployNotice();
     }
 
-    // ── AUTH ─────────────────────────────────────
+    // ── Authentication ─────────────────────────
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const password = document.getElementById('admin-password').value;
-      loginError.textContent = 'Verificando...';
+      const password = $('admin-password').value.trim();
+
+      if (!password) {
+        loginError.textContent = 'Ingresa una contraseña.';
+        return;
+      }
+
+      loginBtn.textContent = 'Verificando…';
+      loginBtn.disabled = true;
+      loginError.textContent = '';
 
       try {
         const hash = await hashPassword(password);
-        
-        // Verificar el hash con la API
+
         const res = await fetch('/api/admin-save', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'verify', passwordHash: hash })
         });
-        
+
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Error de acceso');
-        
+
         currentSessionHash = hash;
         sessionStorage.setItem('admin_hash', hash);
         showDashboard();
       } catch (e) {
         loginError.textContent = '❌ Contraseña incorrecta.';
+      } finally {
+        loginBtn.textContent = 'Ingresar';
+        loginBtn.disabled = false;
       }
     });
 
     logoutBtn.addEventListener('click', () => {
       currentSessionHash = '';
+      currentProducts = [];
+      fileSha = '';
       sessionStorage.removeItem('admin_hash');
       showLogin();
     });
@@ -322,46 +395,64 @@
     function showLogin() {
       dashboard.classList.remove('active');
       loginScreen.classList.add('active');
-      document.getElementById('admin-password').value = '';
+      $('admin-password').value = '';
       loginError.textContent = '';
     }
 
-    // ── FILTER ───────────────────────────────────
+    // ── Filter ─────────────────────────────────
     filterSelect.addEventListener('change', renderTable);
 
-    // ── TABLE RENDER ─────────────────────────────
+    // ── Table Rendering ────────────────────────
     function renderTable() {
       const filter = filterSelect.value;
       let displayProducts = currentProducts;
-      
+
       if (filter !== 'all') {
         displayProducts = currentProducts.filter(p => p.category === filter);
       }
 
-      totalProductsEl.textContent = `${displayProducts.length} Productos`;
+      totalProductsEl.textContent = `${displayProducts.length} Producto${displayProducts.length !== 1 ? 's' : ''}`;
+
+      // Show empty state if no products
+      if (displayProducts.length === 0) {
+        productsTbody.innerHTML = '';
+        emptyState.style.display = 'flex';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
       productsTbody.innerHTML = displayProducts.map(p => {
-        const hasSale = p.salePrice && Number(p.salePrice) > 0;
+        const safeName = escapeHtml(p.name);
+        const safeCategory = escapeHtml(p.category);
+        const safeImage = escapeHtml(p.image || 'images/logo.png');
+        const safeId = escapeHtml(p.id);
+
+        const hasSale = p.salePrice && Number(p.salePrice) > 0 && Number(p.salePrice) < Number(p.price);
         const saleTd = hasSale
           ? `<span class="sale-col">${formatPrice(p.salePrice)} 🔥</span>`
           : `<span class="no-sale">Sin oferta</span>`;
+
         return `<tr>
-          <td class="prod-img-cell"><img src="${p.image || 'images/logo.png'}" alt="${p.name}" onerror="this.src='images/logo.png'"></td>
-          <td><strong>${p.name}</strong></td>
-          <td><span class="cat-badge">${p.category}</span></td>
+          <td class="prod-img-cell"><img src="${safeImage}" alt="${safeName}" loading="lazy" onerror="this.src='images/logo.png'"></td>
+          <td><strong>${safeName}</strong></td>
+          <td><span class="cat-badge">${safeCategory}</span></td>
           <td>${formatPrice(p.price)}</td>
           <td>${saleTd}</td>
           <td>
-            <button class="action-btn edit-btn" onclick="openEdit('${p.id}')">✏️ Editar</button>
-            <button class="action-btn del-btn" onclick="deleteProduct('${p.id}')">🗑️ Borrar</button>
+            <button class="action-btn edit-btn" onclick="openEdit('${safeId}')" type="button" aria-label="Editar ${safeName}">✏️ Editar</button>
+            <button class="action-btn del-btn" onclick="deleteProduct('${safeId}')" type="button" aria-label="Eliminar ${safeName}">🗑️ Eliminar</button>
           </td>
         </tr>`;
       }).join('');
     }
 
-    // ── MODAL ────────────────────────────────────
+    // ── Modal ──────────────────────────────────
     function openModal(title) {
-      document.getElementById('modal-title').textContent = title;
+      $('modal-title').textContent = title;
       modal.classList.add('active');
+      // Focus the first input after animation
+      setTimeout(() => prodName.focus(), 350);
     }
 
     function closeModalHandler() {
@@ -370,15 +461,28 @@
       prodId.value = '';
       prodImgPreview.style.display = 'none';
       prodImgPreview.src = '';
+      prodImgError.style.display = 'none';
     }
 
-    document.getElementById('close-modal').addEventListener('click', closeModalHandler);
-    document.getElementById('cancel-modal').addEventListener('click', closeModalHandler);
+    $('close-modal').addEventListener('click', closeModalHandler);
+    $('cancel-modal').addEventListener('click', closeModalHandler);
     btnAddNew.addEventListener('click', () => openModal('Agregar Nuevo Producto'));
 
-    const prodImgError = document.getElementById('prod-image-error');
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModalHandler();
+      }
+    });
 
-    // Manejar errores de carga de la imagen
+    // Close modal clicking overlay (not content)
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModalHandler();
+      }
+    });
+
+    // ── Image Preview ──────────────────────────
     prodImgPreview.addEventListener('error', () => {
       prodImgPreview.style.display = 'none';
       prodImgError.style.display = 'block';
@@ -391,10 +495,11 @@
     prodImageUrl.addEventListener('input', () => {
       let val = prodImageUrl.value.trim();
       prodImgError.style.display = 'none';
-      
-      // Auto-corregir enlaces de Imgur (convertir página web a link directo de imagen)
-      if (val.match(/^https?:\/\/imgur\.com\/([a-zA-Z0-9]+)$/)) {
-        val = `https://i.imgur.com/${RegExp.$1}.png`;
+
+      // Auto-fix Imgur page links → direct image links
+      const imgurMatch = val.match(/^https?:\/\/imgur\.com\/([a-zA-Z0-9]+)$/);
+      if (imgurMatch) {
+        val = `https://i.imgur.com/${imgurMatch[1]}.png`;
         prodImageUrl.value = val;
       }
 
@@ -406,6 +511,7 @@
       }
     });
 
+    // ── Edit Product ───────────────────────────
     window.openEdit = function(id) {
       const p = currentProducts.find(x => x.id === id);
       if (!p) return;
@@ -422,18 +528,49 @@
       openModal('Editar Producto');
     };
 
-    // ── CRUD ─────────────────────────────────────
+    // ── Create / Update Product ────────────────
     productForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = document.getElementById('save-product-btn');
-      btn.textContent = 'Guardando...';
+      const btn = $('save-product-btn');
+
+      // Validate name
+      const name = prodName.value.trim();
+      if (!name) {
+        showToast('El nombre del producto es requerido.', 'error');
+        prodName.focus();
+        return;
+      }
+
+      // Validate price
+      const price = Number(prodPrice.value);
+      if (!price || price <= 0) {
+        showToast('El precio debe ser mayor a $0.', 'error');
+        prodPrice.focus();
+        return;
+      }
+
+      // Validate sale price
+      const saleVal = prodSalePrice.value ? Number(prodSalePrice.value) : null;
+      if (saleVal !== null) {
+        if (saleVal <= 0) {
+          showToast('El precio de oferta debe ser mayor a $0.', 'error');
+          prodSalePrice.focus();
+          return;
+        }
+        if (saleVal >= price) {
+          showToast('El precio de oferta debe ser menor al precio normal.', 'error');
+          prodSalePrice.focus();
+          return;
+        }
+      }
+
+      btn.textContent = 'Guardando…';
       btn.disabled = true;
 
-      const saleVal = prodSalePrice.value ? Number(prodSalePrice.value) : null;
       const pData = {
         id: prodId.value || Math.random().toString(36).substr(2, 13),
-        name: prodName.value.trim(),
-        price: Number(prodPrice.value),
+        name: name,
+        price: price,
         salePrice: saleVal,
         category: prodCat.value,
         image: prodImageUrl.value.trim()
@@ -441,10 +578,12 @@
 
       try {
         if (prodId.value) {
+          // Update existing product
           const idx = currentProducts.findIndex(x => x.id === pData.id);
           if (idx !== -1) currentProducts[idx] = pData;
         } else {
-          currentProducts.push(pData);
+          // Add new product at the beginning
+          currentProducts.unshift(pData);
         }
 
         await saveProducts(
@@ -455,29 +594,38 @@
         closeModalHandler();
         renderTable();
       } catch (err) {
-        showToast('❌ Error al guardar: ' + err.message, 'error');
+        showToast('Error al guardar: ' + err.message, 'error');
+        // Revert changes on error
+        if (!prodId.value) {
+          currentProducts = currentProducts.filter(x => x.id !== pData.id);
+        }
       } finally {
         btn.textContent = 'Guardar Producto';
         btn.disabled = false;
       }
     });
 
+    // ── Delete Product ─────────────────────────
     window.deleteProduct = async function(id) {
       const p = currentProducts.find(x => x.id === id);
       if (!p || !confirm(`¿Eliminar "${p.name}"?`)) return;
+
+      // Optimistic update
+      const backup = [...currentProducts];
+      currentProducts = currentProducts.filter(x => x.id !== id);
+      renderTable();
+
       try {
-        currentProducts = currentProducts.filter(x => x.id !== id);
         await saveProducts(`admin: elimina "${p.name}"`);
         showToast('🗑️ Producto eliminado');
-        renderTable();
       } catch (err) {
-        showToast('❌ Error: ' + err.message, 'error');
-        currentProducts.push(p); // revertir
+        showToast('Error al eliminar: ' + err.message, 'error');
+        currentProducts = backup; // Revert
         renderTable();
       }
     };
 
-    // ── INIT ─────────────────────────────────────
+    // ── Init ───────────────────────────────────
     const savedHash = sessionStorage.getItem('admin_hash');
     if (savedHash) {
       currentSessionHash = savedHash;
