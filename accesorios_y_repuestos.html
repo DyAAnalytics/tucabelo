@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Catálogo completo de Tucabelo. Encuentra máquinas de corte, shavers, trimmers y accesorios profesionales para barbería con despacho a todo Chile.">
-  <title>Catálogo | Tucabelo</title>
+  <meta name="description" content="Máquinas de corte profesionales Kemei, WMARK y VGR. Cortadoras de pelo con motor magnético, cuchillas de acero y batería de larga duración. Despacho mismo día.">
+  <title>Accesorios y Repuestos | Tucabelo</title>
   <link rel="stylesheet" href="css/style.css?v=">
   <link rel="icon" href="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'><text%20y='.9em'%20font-size='90'>%E2%9C%82%EF%B8%8F</text></svg>">
 </head>
-<body>
+<body data-category="Accesorios y Repuestos">
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
@@ -68,11 +68,11 @@
 </div>
 
 <main>
-  <div class="catalog-intro">
+  <div class="cat-page-header">
     <div class="container">
-      <span class="section-tag">Todos los Productos</span>
-      <h1>Catálogo Completo</h1>
-      <p><span id="catalog-total-count">0</span> productos disponibles · Despacho mismo día a todo Chile</p>
+      <span class="section-tag">Accesorios y Repuestos</span>
+      <h1 class="cat-page-title">Accesorios y Repuestos</h1>
+      <div class="cat-page-desc"><p>Todos los accesorios y repuestos que necesitas.</p></div>
     </div>
   </div>
 
@@ -81,9 +81,8 @@
       <div class="filter-bar">
         <div class="filter-left">
           <span class="filter-label">Filtrar:</span>
-          <button class="filter-btn active" data-group="avail" data-filter="all">Todos</button>
-          <button class="filter-btn" data-group="avail" data-filter="available">Disponibles</button>
-          <button class="filter-btn" data-group="avail" data-filter="offer">En Oferta</button>
+          <button class="filter-btn active" data-group="avail">Todos</button>
+          <button class="filter-btn" data-group="avail">En Oferta</button>
         </div>
         <div class="filter-right">
           <span class="results-count" id="catalog-results-count">0 productos</span>
@@ -106,48 +105,25 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo-text">
-          <span class="tuca">tuca</span><span class="belo">belo</span><span class="dot">.</span>
-        </div>
+        <div class="logo-text"><span class="tuca">tuca</span><span class="belo">belo</span><span class="dot">.</span></div>
         <p>Todo para barbería y peluquería. Productos profesionales de alta calidad con despacho a todo Chile el mismo día de tu compra.</p>
         <div class="social-links">
-          <a href="https://www.instagram.com/tuca_belo/" target="_blank" class="social-link" aria-label="Instagram de Tucabelo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
-          <a href="https://www.facebook.com/tucabeloangol/" target="_blank" class="social-link" aria-label="Facebook de Tucabelo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
-          </a>
-          <a href="https://wa.me/56986018173" target="_blank" class="social-link" aria-label="WhatsApp de Tucabelo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          </a>
+          <a href="https://www.instagram.com/tuca_belo/" target="_blank" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          <a href="https://www.facebook.com/tucabeloangol/" target="_blank" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+          <a href="https://wa.me/56986018173" target="_blank" class="social-link" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Navegación</h4>
-        <ul>
-          <li><a href="index.html">Inicio</a>
+      <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="maquinas.html">Máquinas</a>
         <a href="tijeras.html">Tijeras y Navajas</a>
         <a href="accesorios_y_repuestos.html">Accesorios y Repuestos</a>
         <a href="cuidado_personal.html">Cuidado personal</a>
         <a href="cabello.html">Cabello</a>
-        <a href="ofertas.html">Ofertas</a></li>
-          <li><a href="catalogo.html">Ver Todo</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="https://wa.me/56986018173" target="_blank">WhatsApp</a></li>
-          <li><a href="https://www.instagram.com/tuca_belo/" target="_blank">Instagram</a></li>
-          <li><a href="https://www.facebook.com/tucabeloangol/" target="_blank">Facebook</a></li>
-        </ul>
-      </div>
+        <a href="ofertas.html">Ofertas</a></li><li><a href="catalogo.html">Ver Todo</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="https://wa.me/56986018173" target="_blank">WhatsApp</a></li><li><a href="https://www.instagram.com/tuca_belo/" target="_blank">Instagram</a></li><li><a href="https://www.facebook.com/tucabeloangol/" target="_blank">Facebook</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026, Tucabelo. Todos los derechos reservados.</p>
-    </div>
+    <div class="footer-bottom"><p class="footer-copy">© 2026, Tucabelo. Todos los derechos reservados.</p></div>
   </div>
 </footer>
 
@@ -159,26 +135,15 @@
 <!-- CART SIDEBAR -->
 <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
 <aside class="cart-sidebar" id="cart-sidebar" role="dialog" aria-label="Carrito de compras">
-  <div class="cart-header">
-    <h3>🛒 Mi Carrito</h3>
-    <button class="cart-close" id="cart-close-btn" aria-label="Cerrar carrito">✕</button>
-  </div>
+  <div class="cart-header"><h3>🛒 Mi Carrito</h3><button class="cart-close" id="cart-close-btn" aria-label="Cerrar carrito">✕</button></div>
   <div class="cart-body" id="cart-body"></div>
   <div class="cart-footer">
-    <div class="cart-total">
-      <span>Total</span>
-      <strong id="cart-total-price">$0 CLP</strong>
-    </div>
-    <button class="btn-checkout-wa" onclick="orderViaWhatsApp()">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Pedir por WhatsApp
-    </button>
+    <div class="cart-total"><span>Total</span><strong id="cart-total-price">$0 CLP</strong></div>
+    <button class="btn-checkout-wa" onclick="orderViaWhatsApp()"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp</button>
   </div>
 </aside>
 
-<!-- TOAST CONTAINER -->
 <div class="toast-container" id="toast-container" aria-live="polite"></div>
-
 <script src="js/main.js"></script>
 </body>
 </html>

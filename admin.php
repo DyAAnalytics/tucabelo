@@ -118,12 +118,13 @@ session_start();
                     <div class="form-group">
                         <label for="prod-cat">Categoría</label>
                         <select id="prod-cat" required>
-                            <option value="Clippers">Clippers</option>
-                            <option value="Shavers">Shavers</option>
-                            <option value="Trimmers">Trimmers</option>
-                            <option value="Accesorios">Accesorios</option>
-                            <option value="Barbería">Barbería</option>
-                            <option value="Otros">Otros</option>
+                            <option value="Máquinas">Máquinas</option>
+            <option value="Tijeras, porta navajas y hojas de afeitar">Tijeras, porta navajas y hojas de afeitar</option>
+            <option value="Accesorios y Repuestos">Accesorios y Repuestos</option>
+            <option value="Cuidado personal">Cuidado personal</option>
+            <option value="Cabello">Cabello</option>
+            <option value="Ofertas">Ofertas</option>
+            <option value="Otros">Otros</option>
                         </select>
                     </div>
                     
