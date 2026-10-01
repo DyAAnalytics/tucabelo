@@ -147,21 +147,21 @@
             <label for="prod-cat">Categoría</label>
             <select id="prod-cat" required>
               <option value="Máquinas">Máquinas</option>
-            <option value="Tijeras, porta navajas y hojas de afeitar">Tijeras, porta navajas y hojas de afeitar</option>
-            <option value="Accesorios y Repuestos">Accesorios y Repuestos</option>
-            <option value="Cuidado personal">Cuidado personal</option>
-            <option value="Cabello">Cabello</option>
-            <option value="Ofertas">Ofertas</option>
-            <option value="Otros">Otros</option>
+              <option value="Tijeras, porta navajas y hojas de afeitar">Tijeras, porta navajas y hojas de afeitar</option>
+              <option value="Accesorios y Repuestos">Accesorios y Repuestos</option>
+              <option value="Cuidado personal">Cuidado personal</option>
+              <option value="Cabello">Cabello</option>
+              <option value="Ofertas">Ofertas</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div class="form-group" style="grid-column: 1 / -1;">
             <label for="prod-image-url">URL de la Imagen</label>
-            <input type="url" id="prod-image-url" placeholder="https://i.imgur.com/imagen.png">
-            <small>En Imgur: sube la foto → clic derecho en la imagen → <strong>"Copiar dirección de la imagen"</strong>. El link debe terminar en .png o .jpg.</small>
+            <input type="text" id="prod-image-url" placeholder="https://i.imgur.com/imagen.png o cualquier link de imagen">
+            <small>Pega cualquier link de imagen (Imgur, Google Drive, etc). Si usas Imgur, el link se corrige automaticamente.</small>
             <div style="margin-top:8px;">
               <img id="prod-image-preview" src="" alt="Vista previa" style="display:none; max-width:80px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
-              <div id="prod-image-error" style="display:none;">⚠️ El enlace no es una imagen válida</div>
+              <div id="prod-image-error" style="display:none; color:#f0ad4e; font-size:0.85em; margin-top:4px;"></div>
             </div>
           </div>
         </div>
@@ -373,7 +373,7 @@
         sessionStorage.setItem('admin_hash', hash);
         showDashboard();
       } catch (e) {
-        loginError.textContent = '❌ Contraseña incorrecta.';
+        loginError.textContent = 'Contraseña incorrecta.';
       } finally {
         loginBtn.textContent = 'Ingresar';
         loginBtn.disabled = false;
@@ -487,6 +487,9 @@
     // ── Image Preview ──────────────────────────
     prodImgPreview.addEventListener('error', () => {
       prodImgPreview.style.display = 'none';
+      // Show warning instead of blocking error — Imgur and other hosts
+      // often block cross-origin image loading, but the URL is still valid
+      prodImgError.textContent = 'No se pudo cargar la vista previa (puede ser bloqueo del servidor). El link se guardara igual.';
       prodImgError.style.display = 'block';
     });
 
@@ -494,14 +497,41 @@
       prodImgError.style.display = 'none';
     });
 
+    /**
+     * Converts various Imgur URL formats to direct image links.
+     * Supported:
+     *   https://imgur.com/XXXXX          -> https://i.imgur.com/XXXXX.png
+     *   https://i.imgur.com/XXXXX        -> https://i.imgur.com/XXXXX.png
+     *   https://i.imgur.com/XXXXX.png    -> unchanged (already correct)
+     *   https://imgur.com/a/XXXXX        -> unchanged (album, can't auto-resolve)
+     *   https://imgur.com/gallery/XXXXX  -> unchanged (gallery, can't auto-resolve)
+     */
+    function fixImgurUrl(url) {
+      // Album or gallery links — can't auto-resolve to a single image
+      if (/^https?:\/\/(www\.)?imgur\.com\/(a|gallery)\//i.test(url)) {
+        return url;
+      }
+      // imgur.com/XXXXX (page link without extension) -> direct link
+      const pageMatch = url.match(/^https?:\/\/(www\.)?imgur\.com\/([a-zA-Z0-9]+)$/);
+      if (pageMatch) {
+        return 'https://i.imgur.com/' + pageMatch[2] + '.png';
+      }
+      // i.imgur.com/XXXXX (direct link without extension) -> add .png
+      const directNoExt = url.match(/^https?:\/\/i\.imgur\.com\/([a-zA-Z0-9]+)$/);
+      if (directNoExt) {
+        return 'https://i.imgur.com/' + directNoExt[1] + '.png';
+      }
+      return url;
+    }
+
     prodImageUrl.addEventListener('input', () => {
       let val = prodImageUrl.value.trim();
       prodImgError.style.display = 'none';
 
-      // Auto-fix Imgur page links → direct image links
-      const imgurMatch = val.match(/^https?:\/\/imgur\.com\/([a-zA-Z0-9]+)$/);
-      if (imgurMatch) {
-        val = `https://i.imgur.com/${imgurMatch[1]}.png`;
+      // Auto-fix Imgur links to direct image URLs
+      const fixed = fixImgurUrl(val);
+      if (fixed !== val) {
+        val = fixed;
         prodImageUrl.value = val;
       }
 
@@ -592,7 +622,7 @@
           prodId.value ? `admin: edita "${pData.name}"` : `admin: agrega "${pData.name}"`
         );
 
-        showToast(prodId.value ? '✅ Producto actualizado' : '✅ Producto agregado');
+        showToast(prodId.value ? 'Producto actualizado' : 'Producto agregado');
         closeModalHandler();
         renderTable();
       } catch (err) {
@@ -619,7 +649,7 @@
 
       try {
         await saveProducts(`admin: elimina "${p.name}"`);
-        showToast('🗑️ Producto eliminado');
+        showToast('Producto eliminado');
       } catch (err) {
         showToast('Error al eliminar: ' + err.message, 'error');
         currentProducts = backup; // Revert
