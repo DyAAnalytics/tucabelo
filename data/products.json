@@ -96,8 +96,9 @@
         "id": "6a7825c3cd543",
         "name": "ROCO Salt Texturizador",
         "price": 4000,
+        "salePrice": null,
         "category": "Cuidado personal",
-        "image": "images/cat_barberia.png"
+        "image": "https://imgur.com/a/ikApXaY"
     },
     {
         "id": "6a7825c3cd557",
