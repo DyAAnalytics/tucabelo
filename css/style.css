@@ -1687,8 +1687,9 @@ footer::before {
   display: inline-block;
 }
 
-footer .logo-text span.tuca {
-  color: #e8eaed;
+footer .logo-text span.tuca,
+.footer-brand .logo-text span.tuca {
+  color: #ffffff !important;
 }
 
 .footer-brand p {
