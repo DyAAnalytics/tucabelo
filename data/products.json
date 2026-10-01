@@ -1,5 +1,13 @@
 [
     {
+        "id": "h5nfy0022g",
+        "name": "Maquina Clipper Madeshow M10",
+        "price": 45000,
+        "salePrice": null,
+        "category": "Máquinas",
+        "image": ""
+    },
+    {
         "id": "6a7825c3cd4f6",
         "name": "WMARK NG-X1 Cortadora Profesional",
         "price": 95000,
