@@ -503,17 +503,11 @@
      *   https://imgur.com/XXXXX          -> https://i.imgur.com/XXXXX.png
      *   https://i.imgur.com/XXXXX        -> https://i.imgur.com/XXXXX.png
      *   https://i.imgur.com/XXXXX.png    -> unchanged (already correct)
-     *   https://imgur.com/a/XXXXX        -> unchanged (album, can't auto-resolve)
-     *   https://imgur.com/gallery/XXXXX  -> unchanged (gallery, can't auto-resolve)
      */
     function fixImgurUrl(url) {
-      // Album or gallery links — can't auto-resolve to a single image
-      if (/^https?:\/\/(www\.)?imgur\.com\/(a|gallery)\//i.test(url)) {
-        return url;
-      }
       // imgur.com/XXXXX (page link without extension) -> direct link
       const pageMatch = url.match(/^https?:\/\/(www\.)?imgur\.com\/([a-zA-Z0-9]+)$/);
-      if (pageMatch) {
+      if (pageMatch && pageMatch[2] !== 'a' && pageMatch[2] !== 'gallery') {
         return 'https://i.imgur.com/' + pageMatch[2] + '.png';
       }
       // i.imgur.com/XXXXX (direct link without extension) -> add .png
@@ -527,6 +521,17 @@
     prodImageUrl.addEventListener('input', () => {
       let val = prodImageUrl.value.trim();
       prodImgError.style.display = 'none';
+      $('save-product-btn').disabled = false;
+
+      // Check if it's an album or gallery link (which cannot be used as an image source)
+      if (/^https?:\/\/(www\.)?imgur\.com\/(a|gallery)\//i.test(val)) {
+        prodImgPreview.style.display = 'none';
+        prodImgError.innerHTML = '❌ <strong>Link incorrecto:</strong> Pegaste el link de un álbum de Imgur. Debes hacer <strong>clic derecho en la imagen</strong> y seleccionar <strong>"Copiar dirección de la imagen"</strong>.';
+        prodImgError.style.color = '#ff4d6d';
+        prodImgError.style.display = 'block';
+        $('save-product-btn').disabled = true;
+        return;
+      }
 
       // Auto-fix Imgur links to direct image URLs
       const fixed = fixImgurUrl(val);
